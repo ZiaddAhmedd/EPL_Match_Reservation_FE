@@ -1,0 +1,5 @@
+.footer {
+  background-color: var(--secondary-background);
+  color: var(--primary-text);
+  overflow: hidden;
+}

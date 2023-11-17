@@ -1,0 +1,11 @@
+.loader{
+    height: 82.5vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader > img{
+    height: 11rem;
+    aspect-ratio: 1;
+}

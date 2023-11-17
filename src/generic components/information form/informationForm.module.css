@@ -1,0 +1,104 @@
+.container {
+  margin-inline: auto;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.title {
+  font-family: var(--main-font);
+  font-size: var(--lengthL3);
+  font-weight: 400;
+  display: flex;
+  text-align: left;
+}
+
+.saveBtn {
+  width: 100%;
+  height: 5rem;
+  border-radius: 0.2rem;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, var(--orange), var(--pink)) 1 / 2px;
+  margin-top: 3rem;
+  position: relative;
+
+  background: linear-gradient(to right, transparent 50%, var(--pink) 100%) left,
+    linear-gradient(to right, transparent 50%, var(--orange) 50%) left;
+
+  background-size: 200%;
+  transition: 0.3s ease-out;
+}
+
+.saveBtn:hover {
+  background-position: right;
+}
+.saveBtn p {
+  font-family: var(--main-font);
+  font-size: var(--lengthL1);
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.dropboxes {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.dropbox {
+  width: 50%;
+}
+
+.dropList {
+  width: 100%;
+  height: 5rem;
+  /* padding: 1.5rem; */
+  margin-block: 0.8rem;
+  border-radius: 1.5rem;
+  border: none;
+  font-size: var(--lengthM2);
+  background-color: var(--inputBG);
+  border-inline: 2rem solid transparent;
+  color: var(--primary-text);
+  outline: none;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+.dropItem {
+  width: 50%;
+  background-color: var(--primary-background);
+  font-size: var(--lengthM2);
+  color: var(--white);
+}
+.boxContainer {
+  margin-bottom: 0.2rem;
+}
+
+.boxContainer span{
+  font-size: var(--lengthM2);
+  color: var(--errorText);
+  text-align: center;
+  padding-left: 2.5rem;
+}
+
+.selector {
+  height: fit-content;
+  width: 100%;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+    text-align: center;
+  }
+}

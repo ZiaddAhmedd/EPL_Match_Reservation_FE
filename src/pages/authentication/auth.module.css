@@ -1,0 +1,479 @@
+.main{
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: var(--primary-background);
+}
+
+.imageLogin, .imgSignUp{
+  display: flex;
+  width: 45%;
+  background-image: url("../../assets/imgs/login/BlobAuth.jpg");
+  background-position:0;
+  background-repeat: no-repeat;
+  background-size: cover;
+    z-index: 2;
+}
+
+.imageLogin{
+    -webkit-animation: slide-in-right 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.imgSignUp{
+  -webkit-animation: slide-in-right 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-right 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.infoLogin, .infoSignUp{
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    min-height: 100%;
+    position: relative;
+}
+
+
+.infoLogin{
+    -webkit-animation: slide-in-left 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-left 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.infoSignUp{
+  -webkit-animation: slide-in-left 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-left 0.65s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.header h1{
+  font-family: var(--main-font);
+  font-weight: 900;
+  background: var(--gradientFill);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: var(--lengthX);
+}
+.header h2{
+  font-family: var(--main-font);
+  color: white;
+  font-size: var(--lengthL2);
+  font-weight: 400;
+}
+
+.form{
+    position: relative;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxContainer{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.field{
+    width: 100%;
+    padding: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-radius: 1.5rem;
+    padding-left: 2.5rem;
+
+    background-color: #ffffff15;
+    font-size: var(--lengthM2);
+    color: white;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.field::placeholder{
+  color: var(--placeHolder);
+}
+
+.boxContainer span{
+    font-size: var(--lengthM2);
+    color: var(--errorText);
+    text-align: center;
+    padding-left: 2.5rem;
+}
+
+.btn .button{
+    width: 100%;
+    border: 0.1rem solid white;
+    font-size: var(--lengthL1);
+    padding: 1.5rem 0;
+    font-weight: 900;
+    font-family: var(--main-font);
+    margin-top: 2rem;
+    border-radius: 5px;
+    background: linear-gradient(to right, transparent 50%, var(--pink) 100%) left,
+    linear-gradient(to right, transparent 50%, var(--orange) 50%) left;
+
+    background-size: 200%;
+    transition: 0.2s ease-out;
+}
+.btn .button p{
+    text-align: center;
+    background: var(--gradientFill);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.btn .button:hover{
+    background-position: right;
+  
+    /* background: linear-gradient(to right bottom, #EF573F, #F900BF);
+    animation: myMove 0.15s ;
+    opacity: 0.9; */
+    cursor: pointer;
+    border-color: transparent;
+}
+
+.btn .button:hover p{
+  background: white;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  transition: all 0.15s;
+}
+
+.mssg{
+    position: relative;
+    width: 95%;
+    margin: 2rem 1rem;
+    color: var(--secondary-text);
+    font-size: 1.2rem;
+}
+
+.changeLink{
+    color: var(--placeHolder);
+    font-size: var(--lengthM3);
+    font-weight: 500;
+    margin-top: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.changeLink b{
+  color: var(--pink);
+}
+
+.changeLink:hover b{
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+  cursor: pointer;
+}
+
+.changeLink:hover{
+  cursor: pointer;
+}
+
+.screenLink{
+    color: var(--placeHolder);
+    font-size: var(--lengthM2);
+    font-weight: 200;
+    text-align: right;
+    text-decoration: underline;
+}
+.screenLink:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.icon{
+    width: 2.5rem;
+    height: 2.5rem;
+    padding-top: 1rem;
+    padding-right: 1.5rem;
+}
+.modalicon{
+    width:4rem;
+    height:4rem;
+    margin: auto;
+    align-items: center;
+    color:var( --content-text)
+   
+}
+
+.main .backArrow{
+  position: absolute;
+  width: 4rem !important;
+  height: 4rem !important;
+  fill: var(--primary-text);
+  cursor: pointer;
+  z-index: 3;
+  top: 3rem;
+  left: 3rem;
+  opacity: .8;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.buttonTemp{
+  display: flex;
+  flex-direction: row;
+  margin-block: 2rem;
+  justify-content: center;
+}
+
+.buttonTemp .optionButton {
+  display: flex!important;
+  width: 45%!important;
+  min-width: 10rem!important;
+  padding-block: 2rem!important;
+  padding-inline: 0.5rem!important;
+  border-radius: 1rem!important;
+  border-image: var(--gradientFill) 1!important;
+  border-width: 0.25rem!important;
+  border-style: solid!important;
+  color: var(--placeHolder)!important;
+  font-size: var(--lengthM2)!important;
+  font-weight: 500!important;
+  flex-direction: row!important;
+  gap: 1rem!important;
+  justify-content: center!important;
+  align-items: center!important;
+}
+
+.buttonTemp .optionButton:hover{
+  background: linear-gradient(to right bottom, #EF573F, #F900BF);
+  animation: myMove 0.2s ;
+  opacity: 0.9;
+  color: white;
+}
+
+.or{
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.or hr{
+  width: 20rem;
+  margin: auto;
+  background-color: aqua;
+  color:aqua;
+}
+
+.or p{
+  color: white;
+  margin: auto;
+  font-size: var(--lengthM3);
+  transform: translateY(-1.2rem);
+  background-color: var(--primary-background);
+  padding-inline: 1rem;
+}
+
+@media screen and (max-width:960px) {
+    .main{
+        align-items: center;
+    }
+    .imageLogin, .imgSignUp{
+        display: none;
+    }
+
+    .infoLogin, .infoSignUp{
+        width: 100%;
+        padding-top: 8rem;
+    }
+    
+    .form{
+        width: 40rem;
+    }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2023-3-4 8:35:57
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation jello-diagonal-2
+ * ----------------------------------------
+ */
+ @-webkit-keyframes jello-diagonal-2 {
+    0% {
+      -webkit-transform: skew(0deg 0deg);
+              transform: skew(0deg 0deg);
+    }
+    30% {
+      -webkit-transform: skew(-25deg -25deg);
+              transform: skew(-25deg -25deg);
+    }
+    40% {
+      -webkit-transform: skew(15deg, 15deg);
+              transform: skew(15deg, 15deg);
+    }
+    50% {
+      -webkit-transform: skew(-15deg, -15deg);
+              transform: skew(-15deg, -15deg);
+    }
+    65% {
+      -webkit-transform: skew(5deg, 5deg);
+              transform: skew(5deg, 5deg);
+    }
+    75% {
+      -webkit-transform: skew(-5deg, -5deg);
+              transform: skew(-5deg, -5deg);
+    }
+    100% {
+      -webkit-transform: skew(0deg 0deg);
+              transform: skew(0deg 0deg);
+    }
+  }
+  @keyframes jello-diagonal-2 {
+    0% {
+      -webkit-transform: skew(0deg 0deg);
+              transform: skew(0deg 0deg);
+    }
+    30% {
+      -webkit-transform: skew(-25deg -25deg);
+              transform: skew(-25deg -25deg);
+    }
+    40% {
+      -webkit-transform: skew(15deg, 15deg);
+              transform: skew(15deg, 15deg);
+    }
+    50% {
+      -webkit-transform: skew(-15deg, -15deg);
+              transform: skew(-15deg, -15deg);
+    }
+    65% {
+      -webkit-transform: skew(5deg, 5deg);
+              transform: skew(5deg, 5deg);
+    }
+    75% {
+      -webkit-transform: skew(-5deg, -5deg);
+              transform: skew(-5deg, -5deg);
+    }
+    100% {
+      -webkit-transform: skew(0deg 0deg);
+              transform: skew(0deg 0deg);
+    }
+  }
+
+  
+  /* ----------------------------------------------
+ * Generated by Animista on 2023-4-25 19:49:43
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(600px);
+              transform: translateX(600px);
+      opacity: 0.9;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(600px);
+              transform: translateX(600px);
+      opacity: 0.9;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2023-4-25 20:0:13
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-600px);
+              transform: translateX(-600px);
+      opacity: 0.9;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-600px);
+              transform: translateX(-600px);
+      opacity: 0.9;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes myMove {
+    0% {
+        background: linear-gradient(to right bottom, black, black);
+  }
+  50%{
+      background: linear-gradient(to right bottom,black, #F900BF);
+  }
+  
+  100% {
+    background: linear-gradient(to right bottom, #EF573F, #F900BF);
+  }
+  }
+  @keyframes myMove {
+    0% {
+        background: linear-gradient(to right bottom, black, black);
+  }
+  50%{
+      background: linear-gradient(to right bottom,black, #F900BF);
+  }
+  
+  100% {
+    background: linear-gradient(to right bottom, #EF573F, #F900BF);
+  }
+  }
+
+  
+  

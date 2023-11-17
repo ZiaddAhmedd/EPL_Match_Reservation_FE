@@ -1,0 +1,124 @@
+.cartHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+}
+.cartTitle{
+    font-size: var(--lengthL2);
+    font-family: var(--main-font);
+    font-weight: 400;
+}
+.cartContainer{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: auto;
+}
+
+.cartItems{
+    height: 35rem;
+    overflow-y: auto;
+}
+
+/* width */
+.cartItems::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 1rem;
+  }
+  
+  /* Track */
+ .cartItems::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 1rem;
+  }
+  
+  /* Handle */
+ .cartItems::-webkit-scrollbar-thumb {
+    background: var(--pink);
+    border-radius: 1rem;
+  }
+  
+  /* Handle on hover */
+ .cartItems::-webkit-scrollbar-thumb:hover {
+    background: var(--pink);
+    cursor: pointer;
+  }
+
+  .checkOut{
+      width: 75%;
+      margin: auto;
+      margin-top: 3rem;
+  }
+  .checkOut button{
+    width: 100%;
+    height: 5rem;
+    border-radius: 0.5rem;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right, var(--orange), var(--pink)) 1 / 2px;
+    gap: 1.5rem
+  }
+  
+  .checkOut button p{
+    font-family: var(--main-font);
+    font-size: var(--lengthM3);
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+  
+  .checkOut button:hover {
+    background: linear-gradient(to right bottom, #EF573F, #F900BF);
+    animation: myMove 0.1s ;
+    opacity: 0.9;
+    color: white;
+}
+
+.checkOut button:hover p{
+  font-weight: 400;
+  }
+
+  .totalCheck{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 2rem;
+  }
+
+  .totalCheckInfo{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .totalCheck h4{
+    font-family: var(--main-font);
+    font-size: var(--lengthL1);
+    font-weight: 400;
+  }
+
+  .totalCheckInfo h5{
+    font-family: var(--main-font);
+    font-size: var(--lengthL1);
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-block: 0.2rem;
+  }
+
+  .totalCheckInfo h6{
+    font-family: var(--main-font);
+    font-size: var(--lengthM2);
+    font-weight: 300;
+    text-transform: capitalize;
+    color:  var(--placeHolder);
+  }
+
+  @media screen and (max-width:760px) {
+    .cartItems{
+        min-height: 70rem;
+    }
+  }
