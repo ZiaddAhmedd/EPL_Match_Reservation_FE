@@ -128,9 +128,9 @@ button {
 }
 
 .largeBtn {
-  width: 100%;
+  width: 120%;
   height: 5rem;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   color: var(--white);
   display: flex;
   justify-content: center;
@@ -138,15 +138,14 @@ button {
   cursor: pointer;
   border: 1px solid transparent;
   border-image: linear-gradient(to right, var(--orange), var(--pink)) 1 / 2px;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 2rem;
   position: relative;
-
   background: linear-gradient(to right, transparent 50%, var(--pink) 100%) left,
     linear-gradient(to right, transparent 50%, var(--orange) 50%) left;
-
   background-size: 200%;
   transition: 0.3s ease-out;
+  margin: 15%;
+  margin-right: 0;
 }
 
 .largeBtn:hover {

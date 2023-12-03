@@ -1,0 +1,23 @@
+[
+    {
+      "key": "1",
+      "username": "John Doe",
+      "email": "johndoe@example.com",
+      "_id": "123456",
+      "exist": 0
+    },
+    {
+      "key": "2",
+      "username": "Jane Smith",
+      "email": "janesmith@example.com",
+      "_id": "789012",
+      "exist": 0
+    },
+    {
+      "key": "3",
+      "username": "John Smith",
+      "email": "johnsmith@example.com",
+      "_id": "345678",
+      "exist": 0
+    }
+  ]

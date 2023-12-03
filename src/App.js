@@ -2,9 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./layouts/footer/Footer";
 import NavBar from "./layouts/nav/NavBar";
 import ForgetPasswordPage from "./pages/authentication/ForgetPasswordPage";
-import HomePage from "./pages/home/homePage";
+
 // import SubscribeCard from "./generic components/subscribe/SubscribeCard";
 import NotFound from "./layouts/notFound/NotFound";
+import Home from "./pages/home/homePage";
+import Manager from "./pages/manager/managerPage";
+import Fan from "./pages/fan/fanPage";
+import Admin from "./pages/admin/adminPage";
+
 function App() {
 
 
@@ -13,7 +18,9 @@ function App() {
       {/* <SubscribeCard open={open} setOpen={setOpen} /> */}
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Home />} exact/>
+        <Route path="/Manager" element={<Manager />} exact></Route>
+        <Route path="/Fan" element={<Fan />} exact></Route>
         <Route path="/forgetPassword/:id" element={<ForgetPasswordPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

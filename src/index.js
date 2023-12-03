@@ -10,7 +10,7 @@ import { persistStore } from "redux-persist";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './pages/authentication/LoginPage';
 import SignupPage from './pages/authentication/SignupPage';
-import Admin from './pages/admin/Admin';
+import Admin from './pages/admin/adminPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store)
@@ -23,7 +23,7 @@ root.render(
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/admin/*" element={<Admin />} />
+            <Route path="/admin" element={<Admin />} exact></Route>
             <Route path="*" element={<App />} />
           </Routes>
         </PersistGate>
