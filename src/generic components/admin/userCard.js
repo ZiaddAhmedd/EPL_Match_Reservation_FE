@@ -58,11 +58,11 @@ return (
             <div >{props.email}</div>
             <div >{props.id}</div>
         </div>
-        <div >
-            <button onClick={approveUser} className="largeBtn">
+        <div className={classes.sub2}>
+        <button onClick={approveUser} className={classes.buttons}>
                 Verify
-            </button>
-        <button onClick={removeUser} className="largeBtn">
+        </button>
+        <button onClick={removeUser} className={classes.buttons}>
             Remove
         </button>
         </div>

@@ -1,0 +1,90 @@
+.body {
+  margin-top: 3%;
+  background-color: var(--main-bg);
+  font-family: var(--main-font);
+}
+.shape {
+  background-color: var(--inputBG);
+  position: relative;
+    width: 70%;
+    margin: auto;
+    padding: 5rem;
+    border-radius: 1rem;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    margin-bottom: 4rem;
+  }
+  
+  .inputbox {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+  
+  .forminput {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-left: 5rem;
+    justify-content: space-around;
+  }
+  
+  .titles {
+    font-size: 5rem;
+    color: var(--orange);
+    padding-bottom: 3rem;
+    text-align: center;
+  }
+  .input {
+    width: 25.5rem;
+    box-sizing: border-box;
+    border: 2px solid #747474;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    background-repeat: no-repeat;
+    padding: 1rem 0.8rem;
+    text-align: left;
+    color : white;
+    background-color: #0c0101;
+  }
+
+  .input::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the color of the icon */
+  }
+  
+  .label {
+    font-size: 1.7rem;
+    padding-bottom: 0.5rem;
+    color: var(--orange);
+  }
+  
+  .buttons {
+    height: 4rem;
+    border-radius: 0.4rem;
+    color: var(--white);
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to left, var(--orange), var(--pink)) 1 / 2px;
+    position: relative;
+    background: linear-gradient(to left, transparent 50%, var(--pink) 100%) right,
+    linear-gradient(to left, transparent 50%, var(--orange) 50%) right;
+    background-size: 200%;
+    transition: 0.4s ease-out;
+    margin-top: 5%;
+    font-size : var(--lengthM3);
+    font-weight: bold;
+    width: 50%;
+    left : 25%;
+    background-color: #0c0101;
+    
+  }
+  
+  .buttons:hover {
+    background-position: left;
+  }
+  
+  .buttons>p{
+    font-size: var(--lengthM3);
+    font-style: var(--main-font);
+  }

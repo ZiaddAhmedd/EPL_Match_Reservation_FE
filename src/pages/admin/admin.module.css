@@ -8,24 +8,20 @@
 .header{
     align-items: center;
     padding: 1%;
-    color: var(--pink);
+    color: var(--orange);
     font-size: var(--lengthL3);
 }
 
 .subheader{
     align-items: center;
     padding: 1%;
-    color: var(--pink);
+    color: var(--orange);
     font-size: var(--lengthL2);
 }
 
-.sub0 {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    margin: auto;
-    margin-bottom: 0.5rem;
-    margin-bottom: 1rem;
+.userList {
+    position: relative;
+    left : center;
 }
 
 @media screen and (max-width: 46rem){

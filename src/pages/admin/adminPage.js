@@ -48,8 +48,8 @@ function Admin() {
     }, []);
 
     const userList = usersData.map((item) => {
-            return(          
-            <div>
+            return(      
+                <div>   
                 <UserCard 
                 key={item._id}
                 username={item.username} 
@@ -57,7 +57,8 @@ function Admin() {
                 id={item._id}
                 exist = {0}
                 />
-            </div>)
+                </div> 
+            )
         }
     )
 
@@ -65,9 +66,6 @@ function Admin() {
         <div className={classes.admin}>
         <h1 className={classes.header}> Admin Page </h1>
         <h2 className={classes.subheader}>Users List</h2>
-            <div className={classes.sub0}>
-                
-            </div>
             <div className={classes.userList}>
                 {userList}
             </div>
