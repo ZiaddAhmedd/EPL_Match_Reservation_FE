@@ -21,7 +21,7 @@
 
 .userList {
     position: relative;
-    left : center;
+    width : 30%;
 }
 
 @media screen and (max-width: 46rem){

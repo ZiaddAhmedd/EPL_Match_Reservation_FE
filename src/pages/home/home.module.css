@@ -1,0 +1,23 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background : var(--orange);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+}
+
+.imgBody {
+    width:100%;
+    background-image: url("../../assets/imgs/home/Champions.png");
+    background-repeat: repeat-x;
+}
+
+.mainImg {
+    width: 50%;
+    background-repeat: repeat;
+}
+
