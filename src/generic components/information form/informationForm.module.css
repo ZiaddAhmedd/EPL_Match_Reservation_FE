@@ -24,12 +24,12 @@
   align-items: center;
   cursor: pointer;
   border: 1px solid transparent;
-  border-image: linear-gradient(to right, var(--orange), var(--pink)) 1 / 2px;
+  border-image: linear-gradient(to right, var(--darkOrange), var(--darkYellow)) 1 / 2px;
   margin-top: 3rem;
   position: relative;
 
-  background: linear-gradient(to right, transparent 50%, var(--pink) 100%) left,
-    linear-gradient(to right, transparent 50%, var(--orange) 50%) left;
+  background: linear-gradient(to right, transparent 50%, var(--darkYellow) 100%) left,
+    linear-gradient(to right, transparent 50%, var(--darkOrange) 50%) left;
 
   background-size: 200%;
   transition: 0.3s ease-out;

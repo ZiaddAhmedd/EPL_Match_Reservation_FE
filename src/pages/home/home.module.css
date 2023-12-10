@@ -4,20 +4,78 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background : var(--orange);
-    -webkit-background-clip: text;
-    color: transparent;
+    color : white;
     text-align: center;
 }
 
-.imgBody {
-    width:100%;
-    background-image: url("../../assets/imgs/home/Champions.png");
-    background-repeat: repeat-x;
+.body {
+    position: relative;
+    top: 73%;
+}
+
+.title {
+    font-weight: 700;
+    background: linear-gradient(to right bottom, #b80000, #e2bf23);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: var(--lengthL2);
+}
+
+.blurImg {
+    position: absolute;
+    filter : blur(3px);
+    height: 70.6%;
+    width: 250vw;
+    opacity: 0.8;
 }
 
 .mainImg {
-    width: 50%;
-    background-repeat: repeat;
+    position: absolute;
+    height:71%;
+    width: 70vw;
+    z-index: 2;
+    
 }
 
+
+.buttons {
+    height: 4rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to left, #b80000, #e2bf23) 1 / 2px;
+    position: relative;
+    background: linear-gradient(to left, transparent 50%, #e2bf23 100%) right,
+    linear-gradient(to left, transparent 50%, #b80000 50%) right;
+    background-size: 200%;
+    transition: 0.4s ease-out;
+    margin-top: 5%;
+    font-size : var(--lengthM3);
+    font-weight: bold;
+    width: 50%;
+    background-color: #0c0101;
+    
+}
+
+.buttons p{
+    text-align: center;
+    background: linear-gradient(to right bottom, #b80000, #e2bf23);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.buttons:hover {
+    background-position: left;
+}
+
+.buttons:hover p{
+    background: white;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    transition: all 0.15s;
+}
+
+.buttons>p{
+    font-size: var(--lengthM3);
+    font-style: var(--main-font);
+}

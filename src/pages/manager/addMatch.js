@@ -86,7 +86,7 @@ const AddMatch = (props) => {
     addMatch()
     };
 
-    const Teams = ['Al Ahly FC','Pyramids FC','Zamalek SC','Cleopatra FC','Modern Future FC','El Masry SC','Bank El Ahly','	Pharco FC','	El Mokawloon SC',"Tala'ea El Gaish",'Ittihad Alexandria SC','Smouha SC','Enppi SC','Zed FC','	Ismaily SC','El Gouna FC',
+    const Teams = ['Al Ahly FC','Pyramids FC','Zamalek SC','Cleopatra FC','Modern Future FC','El Masry SC','Bank El Ahly','	Pharco FC','El Mokawloon SC',"Tala'ea El Gaish",'Ittihad Alexandria SC','Smouha SC','Enppi SC','Zed FC','	Ismaily SC','El Gouna FC',
     'Baladiyat El Mahalla','El Dakhlia SC']
 
     function dropDownMenu(option,index) {

@@ -82,7 +82,7 @@
 
 .cartItemsNumber{
     font-size: var(--lengthM2);
-    color: var(--pink);
+    color: var(--darkYellow);
     font-family: var(--main-font);
     font-weight: 600;
     position: absolute;

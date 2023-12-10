@@ -113,8 +113,8 @@
     font-family: var(--main-font);
     margin-top: 2rem;
     border-radius: 5px;
-    background: linear-gradient(to right, transparent 50%, var(--pink) 100%) left,
-    linear-gradient(to right, transparent 50%, var(--orange) 50%) left;
+    background: linear-gradient(to right, transparent 50%, var(--darkYellow) 100%) left,
+    linear-gradient(to right, transparent 50%, var(--darkOrange) 50%) left;
 
     background-size: 200%;
     transition: 0.2s ease-out;
@@ -160,12 +160,12 @@
 }
 
 .changeLink b{
-  color: var(--pink);
+  color: var(--darkYellow);
 }
 
 .changeLink:hover b{
   text-decoration: underline;
-  text-decoration-color: var(--pink);
+  text-decoration-color: var(--darkYellow);
   cursor: pointer;
 }
 

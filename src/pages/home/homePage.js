@@ -12,16 +12,14 @@ const Home = () => {
       
       <div className={classes.homePage}>
         {/* Hero Section */}
-      
         <img src={championsImg} alt="Champions" className={classes.mainImg} />
+        <img src={championsImg} alt="Champions" className={classes.blurImg} />
         {/* Headline */}
-        <h1>Experience the thrill of Egyptian Premier League live matches! Reserve your tickets now.</h1>
-        {/* CTA Button */}
-        <button onClick={() => alert('Explore Tickets')}>Explore Tickets</button>
+        <div className={classes.body}>
+        <h1 className={classes.title}>Experience the thrill of Egyptian Premier League live matches! <br></br> Reserve your tickets now.</h1>
       
-
       {/* Match Information Section */}
-        <h2>Upcoming Matches</h2>
+        <h2 className= {classes.title}>Upcoming Matches</h2>
         {/* Display match details and a button to select the match */}
         {/* <MatchCard team1= "Al Ahly"
            team2="Zamalek"
@@ -35,7 +33,7 @@ const Home = () => {
         <h2>Reserve Your Tickets</h2>
         {/* Reservation Form */}
         {/* Pricing Information */}
-        <button>Reserve Now</button>
+        <button className={classes.buttons}><p>Reserve Now </p></button>
       </section>
 
       {/* Stadium Information Section Only VIP section is available for now*/}
@@ -60,6 +58,7 @@ const Home = () => {
       <footer>
         {/* Links, Social Media Icons, Copyright Information */}
       </footer>
+      </div>
       </div>
     </>
   );

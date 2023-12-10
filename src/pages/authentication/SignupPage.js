@@ -10,7 +10,6 @@ import ErrorNotification from "../../generic components/error message/ErrorNotif
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GenericModal from "../../generic components/generic modal/GenericModal";
-import { BiErrorCircle } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -26,12 +25,9 @@ import Loader from "../../layouts/loader/Loader";
 const SignupPage = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
   const [cont, setContinue] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [randImg, setrandImg] = useState(Math.floor(Math.random() * 3));
   const [myEmail, setMyEmail] = useState();
-
   const [errorMsg, setErrorMsg] = useState("");
   const [errorLink, setErrorLink] = useState("");
   const [errorLinkMsg, setErrorLinkMsg] = useState("");
@@ -45,19 +41,27 @@ const SignupPage = () => {
   }, []);
 
   const initialValues = {
-    email: "",
-    phoneNO: "",
-    name: "",
+    username: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthDate: "",
+    gender:"",
+    city: "",
+    address: "",
+    role:""
   };
 
   const validationSchema = Yup.object().shape({
+    username: Yup.string().min(5).required("Field required"),
+    password: Yup.string().min(8).required("Field required"),
     email: Yup.string()
       .min(3)
       .email("Invalid email address")
-      .required(" Email field is required"),
-
-    password: Yup.string().min(8).required("Field required"),
+      .required(" Field required"),
+    firstName: Yup.string().min(2).required("Field required"),
+    lastName: Yup.string().min(2).required("Field required"),
   });
 
   async function sendData(data) {
@@ -114,6 +118,26 @@ const SignupPage = () => {
                   <div className={classes.boxContainer}>
                     <Field
                       className={classes.field}
+                      name="firstName"
+                      autoComplete="off"
+                      data-testid="firstNamefield"
+                      placeholder="First Name"
+                    />
+                    <ErrorMessage name="firstName" component="span" />
+                  </div>
+                  <div className={classes.boxContainer}>
+                    <Field
+                      className={classes.field}
+                      name="lastName"
+                      autoComplete="off"
+                      data-testid="lastNamefield"
+                      placeholder="Last Name"
+                    />
+                    <ErrorMessage name="lastName" component="span" />
+                  </div>
+                  <div className={classes.boxContainer}>
+                    <Field
+                      className={classes.field}
                       id="email"
                       name="email"
                       autoComplete="off"
@@ -126,23 +150,14 @@ const SignupPage = () => {
                   <div className={classes.boxContainer}>
                     <Field
                       className={classes.field}
-                      name="name"
+                      id="username"
+                      name="username"
                       autoComplete="off"
-                      data-testid="namefield"
-                      placeholder="Full Name"
+                      disabled={cont}
+                      data-testid="usernameFieldInput"
+                      placeholder="Username"
                     />
-                    <ErrorMessage name="name" component="span" />
-                  </div>
-                  <div className={classes.boxContainer}>
-                    <Field
-                      className={classes.field}
-                      name="phoneNO"
-                      type="number"
-                      autoComplete="off"
-                      data-testid="phoneNOfield"
-                      placeholder="Phone number"
-                    />
-                    <ErrorMessage name="phoneNO" component="span" />
+                    <ErrorMessage name="username" component="span" />
                   </div>
                   <div className={classes.boxContainer}>
                     <div className={classes.fieldContainer}>

@@ -1,6 +1,6 @@
 :root {
   /* 3x Main colors */
-  --gradientFill: linear-gradient(to right bottom, #ef573f, #f900bf);
+  --gradientFill: linear-gradient(to right bottom, #b80000, #e2bf23);
   --orange: #ef573f;
   --pink: #f900bf;
   --lime-green: #d7ff7b;
@@ -11,6 +11,8 @@
   --delivered: #86f1b8;
   --cancelled: #fb3a5a;
   --inputBG: #ffffff15;
+  --darkOrange : #b80000;
+  --darkYellow :#e2bf23;
   /* 3x Font colors */
   --primary-text: white;
   --secondary-text: rgb(114, 117, 150);

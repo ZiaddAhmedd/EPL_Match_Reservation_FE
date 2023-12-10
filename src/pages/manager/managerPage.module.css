@@ -12,10 +12,10 @@
   color: var(--white);
   cursor: pointer;
   border: 1px solid transparent;
-  border-image: linear-gradient(to left, var(--orange), var(--pink)) 1 / 2px;
+  border-image: linear-gradient(to left, var(--darkOrange), var(--darkYellow)) 1 / 2px;
   position: relative;
-  background: linear-gradient(to left, transparent 50%, var(--pink) 100%) right,
-  linear-gradient(to left, transparent 50%, var(--orange) 50%) right;
+  background: linear-gradient(to left, transparent 50%, var(--darkYellow) 100%) right,
+  linear-gradient(to left, transparent 50%, var(--darkOrange) 50%) right;
   background-size: 200%;
   transition: 0.4s ease-out;
   margin: 3% 0 2% 0;

@@ -23,7 +23,7 @@
   
 }
 .btnclose{
-  color:var(--pink)
+  color:var(--darkYellow)
 }
 .modalclose:hover {
 
@@ -54,7 +54,7 @@
   margin: auto;
   background-color: var(--primary-background);
   position: relative;
-  border: solid 0.05rem var(--pink);
+  border: solid 0.05rem var(--darkYellow);
   
 }
 .infoheader {

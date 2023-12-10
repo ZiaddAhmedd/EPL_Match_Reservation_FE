@@ -36,13 +36,13 @@
   
   /* Handle */
  .cartItems::-webkit-scrollbar-thumb {
-    background: var(--pink);
+    background: var(--darkYellow);
     border-radius: 1rem;
   }
   
   /* Handle on hover */
  .cartItems::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
+    background: var(--darkYellow);
     cursor: pointer;
   }
 
@@ -61,7 +61,7 @@
     align-items: center;
     cursor: pointer;
     border: 1px solid transparent;
-    border-image: linear-gradient(to right, var(--orange), var(--pink)) 1 / 2px;
+    border-image: linear-gradient(to right, var(--darkOrange), var(--darkYellow)) 1 / 2px;
     gap: 1.5rem
   }
   
@@ -73,7 +73,7 @@
   }
   
   .checkOut button:hover {
-    background: linear-gradient(to right bottom, #EF573F, #F900BF);
+    background: linear-gradient(to right bottom, var(--darkOrange), var(--darkYellow));
     animation: myMove 0.1s ;
     opacity: 0.9;
     color: white;
