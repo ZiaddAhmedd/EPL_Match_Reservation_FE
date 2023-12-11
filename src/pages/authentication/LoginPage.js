@@ -173,7 +173,7 @@ const LoginPage = () => {
                       className={classes.field}
                       name="username"
                       autoComplete="off"
-                      placeholder="username"
+                      placeholder="Username"
                     />
                     <ErrorMessage
                       name="username"
