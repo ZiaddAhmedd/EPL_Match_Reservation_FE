@@ -43,7 +43,7 @@ const LoginPage = () => {
   }
   
 
-  //To make sure user can't access login if he is already logged in
+  // To make sure user can't access login if he is already logged in
   useEffect(() => {
     if (user.loggedIn) {
       navigate("/");

@@ -3,17 +3,15 @@ import classes from "./auth.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import validator from "validator";
 import axios from "../../requests/axios";
 import routes from "../../requests/routes";
 import ErrorNotification from "../../generic components/error message/ErrorNotification";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import GenericModal from "../../generic components/generic modal/GenericModal";
-import { TfiEmail } from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Loader from "../../layouts/loader/Loader";
+import toast from "react-hot-toast";
+import MyToaster from "../../generic components/toaster/MyToaster";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 /**
  * Component that renders Signup page
@@ -25,13 +23,13 @@ import Loader from "../../layouts/loader/Loader";
 const SignupPage = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+
   const [cont, setContinue] = useState(false);
-  const [loader, setLoader] = useState(false);
   const [myEmail, setMyEmail] = useState();
+
   const [errorMsg, setErrorMsg] = useState("");
   const [errorLink, setErrorLink] = useState("");
   const [errorLinkMsg, setErrorLinkMsg] = useState("");
-  const [agreeformstate, setagreeformstate] = useState(false);
 
   //To make sure user can't access signUp if he is already logged in
   useEffect(() => {
@@ -40,6 +38,7 @@ const SignupPage = () => {
     }
   }, []);
 
+
   const initialValues = {
     username: "",
     password: "",
@@ -47,36 +46,31 @@ const SignupPage = () => {
     lastName: "",
     email: "",
     birthDate: "",
-    gender:"",
+    gender: "",
     city: "",
     address: "",
-    role:""
+    role: "",
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().min(5).required("Field required"),
-    password: Yup.string().min(8).required("Field required"),
     email: Yup.string()
       .min(3)
       .email("Invalid email address")
-      .required(" Field required"),
-    firstName: Yup.string().min(2).required("Field required"),
-    lastName: Yup.string().min(2).required("Field required"),
+      .required(" Email field is required"),
+
+    password: Yup.string().min(8).required("Field required"),
   });
 
-  async function sendData(data) {
-    setLoader(true);
+  const sendData = async (data) => {
     try {
       const request = await axios.post(routes.signUp, data);
-      setagreeformstate(true);
-      setLoader(false);
-    } catch (err) {
-      setLoader(false);
+      toast.success("Verification email sent successfully");
+    } catch (error) {
       setErrorMsg("There is an account associated with the email.");
       setErrorLinkMsg("Log in");
       setErrorLink("/login");
     }
-  }
+  };
 
   const handleSubmit = (data) => {
     sendData(data);
@@ -88,6 +82,7 @@ const SignupPage = () => {
   return (
     <div>
       <div className={classes.main}>
+        <MyToaster />
         <NavLink to="/">
           <ArrowBackIcon className={classes.backArrow} />
         </NavLink>
@@ -180,16 +175,7 @@ const SignupPage = () => {
                     >
                       <p>Create account</p>
                     </button>
-                    {true && (
-                      <>
-                        <GenericModal
-                          header="Verification Email has been sent to you"
-                          icon={<TfiEmail className={classes.modalicon} />}
-                        />
-                      </>
-                    )}
                   </div>
-                  {loader && <Loader color={"#f900bf"} />}
                 </Form>
               )}
             </Formik>
