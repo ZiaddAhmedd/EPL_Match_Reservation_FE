@@ -113,11 +113,11 @@
     font-family: var(--main-font);
     margin-top: 2rem;
     border-radius: 5px;
-    background: linear-gradient(to right, transparent 50%, var(--darkYellow) 100%) left,
-    linear-gradient(to right, transparent 50%, var(--darkOrange) 50%) left;
+    background: linear-gradient(to left, transparent 50%, var(--darkYellow) 100%) right,
+    linear-gradient(to left, transparent 50%, var(--darkOrange) 50%) right;
 
     background-size: 200%;
-    transition: 0.2s ease-out;
+    transition: 0.3s ease-out;
 }
 .btn .button p{
     text-align: center;
@@ -126,7 +126,7 @@
     -webkit-background-clip: text;
 }
 .btn .button:hover{
-    background-position: right;
+    background-position: left;
   
     /* background: linear-gradient(to right bottom, #EF573F, #F900BF);
     animation: myMove 0.15s ;
@@ -160,12 +160,12 @@
 }
 
 .changeLink b{
-  color: var(--darkYellow);
+  color: var(--orange);
 }
 
 .changeLink:hover b{
   text-decoration: underline;
-  text-decoration-color: var(--darkYellow);
+  text-decoration-color: var(--orange);
   cursor: pointer;
 }
 

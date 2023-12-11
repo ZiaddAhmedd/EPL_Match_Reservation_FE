@@ -1,3 +1,6 @@
+.manager {
+  height: 83vh;
+}
 
 .buttonlist {
   display : flex;

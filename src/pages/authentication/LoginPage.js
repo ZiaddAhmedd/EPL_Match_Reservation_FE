@@ -96,12 +96,12 @@ const LoginPage = () => {
       } catch (err) {
         setLoader(false);
         if (err.response.data.error === "Error: Password is incorrect") {
-          setErrorMsg("Email or password is incorrect");
+          setErrorMsg("Username or password is incorrect");
           setShowForgetPass(true);
         } else if (
-          err.response.data.error === "Error: email is not verified "
+          err.response.data.error === "Error: username is not verified "
         ) {
-          setErrorMsg("Email is not verified");
+          setErrorMsg("Username is not verified");
         } else {
           setErrorMsg("There is no account associated with this username.");
           setErrors({
@@ -219,13 +219,13 @@ const LoginPage = () => {
         </div>
         <div className={classes.imageLogin}></div>
       </div>
-      {forgetPasswordModal && (
+      {/* {forgetPasswordModal && (
         <GenericModal
           header="Check your email to update your password"
           details={"We sent a link to " + `${username}`}
           icon={<TfiEmail className={classes.modalicon} />}
         />
-      )}
+      )} */}
     </div>
   );
 };

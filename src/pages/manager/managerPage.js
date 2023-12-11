@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 const Manager = (props) => {
   
 return (
+  <div className={classes.manager}>
   <div className= {classes.buttonlist}>
   <NavLink to="/manager/addmatch" className={classes.buttons}>
     Add Match
@@ -18,7 +19,7 @@ return (
     Add Stadium
   </NavLink>
   </div>
-  
+  </div>
 );
 };
 
