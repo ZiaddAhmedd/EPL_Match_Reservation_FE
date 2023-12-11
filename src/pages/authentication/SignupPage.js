@@ -64,9 +64,11 @@ const SignupPage = () => {
   const sendData = async (data) => {
     try {
       const request = await axios.post(routes.signUp, data);
-      toast.success("Verification email sent successfully");
+      toast.success("Account created successfully, wait for admin approval");
+      // clear form
+
     } catch (error) {
-      setErrorMsg("There is an account associated with the email.");
+      setErrorMsg("There is an account associated with this username.");
       setErrorLinkMsg("Log in");
       setErrorLink("/login");
     }

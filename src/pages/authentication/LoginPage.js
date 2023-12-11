@@ -1,13 +1,14 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { TfiEmail } from "react-icons/tfi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import ErrorNotification from "../../generic components/error message/ErrorNotification";
 import GenericModal from "../../generic components/generic modal/GenericModal";
+import MyToaster from "../../generic components/toaster/MyToaster";
 import Loader from "../../layouts/loader/Loader";
 import axios from "../../requests/axios";
 import routes from "../../requests/routes";
@@ -20,7 +21,7 @@ const LoginPage = () => {
   const user = useSelector((state) => state.user);
 
   const [randImg, setrandImg] = useState(Math.floor(Math.random() * 3));
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
   const [errorLink, setErrorLink] = useState("");
@@ -29,21 +30,7 @@ const LoginPage = () => {
   const [showForgetPass, setShowForgetPass] = useState(false);
   const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
 
-
-  function handleCredentialResponse(response) {
-    console.log(response.credential);
-    const token = response.credential;
-    const decodedToken = jwtDecode(token);
-    console.log(decodedToken);
-    const data = {
-      email: decodedToken.email,
-      name: decodedToken.name,
-      image: decodedToken.picture,
-    };
-  }
-  
-
-  // To make sure user can't access login if he is already logged in
+  //To make sure user can't access login if he is already logged in
   useEffect(() => {
     if (user.loggedIn) {
       navigate("/");
@@ -51,15 +38,14 @@ const LoginPage = () => {
   }, []);
 
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(3)
-      .email("Please enter a valid email address")
-      .required("Please enter a valid email address"),
+    username: Yup.string()
+      .min(5)
+      .required("Please enter a username"),
     password: Yup.string().required("Password is required"),
   });
   const [loader, setLoader] = useState(false);
@@ -68,7 +54,7 @@ const LoginPage = () => {
     setErrorMsg("");
     setErrorLinkMsg("");
     setErrorLink("");
-    setEmail(data.email);
+    setUsername(data.username);
 
     async function sendData() {
       setLoader(true);
@@ -78,29 +64,37 @@ const LoginPage = () => {
           userActions.login({
             id: response.data.user._id,
             token: response.data.token,
+            username: response.data.user.username,
           })
         );
 
         const UserResponse = await axios.get(
           routes.getUser + response.data.user._id
         );
-        console.log(UserResponse.data);
+
         dispatch(
           userActions.updateUser({
+            username: UserResponse.data.username,
             email: UserResponse.data.email,
-            name: UserResponse.data.name,
-            phoneNO: UserResponse.data.phoneNO,
-            isAdmin: UserResponse.data.isAdmin,
-            cart: UserResponse.data.cart,
+            firstName: UserResponse.data.firstName,
+            lastName: UserResponse.data.lastName,
+            address: UserResponse.data.address,
+            gender: UserResponse.data.gender,
+            role: UserResponse.data.role,
+            birthDate: UserResponse.data.birthDate,
           })
         );
         setLoader(false);
-        navigate("/");
+        if (UserResponse.role === "Admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("id", response.data.user._id);
+        sessionStorage.setItem("username", response.data.user.username);
       } catch (err) {
         setLoader(false);
-        // console.log("X" + err.response.data.error + "x");
         if (err.response.data.error === "Error: Password is incorrect") {
           setErrorMsg("Email or password is incorrect");
           setShowForgetPass(true);
@@ -109,9 +103,9 @@ const LoginPage = () => {
         ) {
           setErrorMsg("Email is not verified");
         } else {
-          setErrorMsg("There is no account associated with the email.");
+          setErrorMsg("There is no account associated with this username.");
           setErrors({
-            email: "There is no account associated with the email.",
+            username: "There is no account associated with this username.",
           });
           setErrorLinkMsg("Create account");
           setErrorLink("/signup");
@@ -123,25 +117,27 @@ const LoginPage = () => {
 
 
   const handleForgetPassword = () => {
-    setForgetPasswordModal(false);
-
     async function sendData() {
       try {
         const response = await axios.patch(routes.forgotPassword, {
-          email: email,
+          username: username,
         });
-        console.log(response);
-        setForgetPasswordModal(true);
+        toast.success("Forget password link sent successfully");
       } catch (err) {
-        console.log(err);
+        if (err.response.data.error === "Error: email is not verified ") {
+          toast.error("Email is not verified");
+        } else {
+          toast.error("Error occurred");
+        }
       }
     }
 
-    sendData();
+    sendData()
   };
 
   return (
     <div data-testid="LoginComponent">
+      <MyToaster />
       <div className={classes.main}>
         <NavLink to="/">
           <ArrowBackIcon className={classes.backArrow} />
@@ -152,21 +148,7 @@ const LoginPage = () => {
               <h1>Welcome Back,</h1>
               <h2>Login To Your Account</h2>
               <div className={classes.buttonTemp}>
-                <div id="g_id_onload">
-                </div>
-                {/* </div> */}
-                {/* <button className={classes.optionButton} onClick={signInWithGoogle}>
-                  <GoogleIcon style={{ fontSize: "2.2rem" }} />
-                  Login with Google
-                </button> */}
-                {/* <button className={classes.optionButton}>
-                  <FacebookRoundedIcon style={{ fontSize: "2.2rem" }} />
-                  Login with Facebook
-                </button> */}
-              </div>
-              <div className={classes.or}>
-                <hr></hr>
-                <p>or</p>
+                <div id="g_id_onload"></div>
               </div>
             </div>
 
@@ -185,19 +167,17 @@ const LoginPage = () => {
             >
               {({ values }) => (
                 <Form>
-                  {setEmail(values.email)}
+                  {setUsername(values.username)}
                   <div className={classes.boxContainer}>
                     <Field
                       className={classes.field}
-                      name="email"
+                      name="username"
                       autoComplete="off"
-                      data-testid="LoginFormEmailInput"
-                      placeholder="Email"
+                      placeholder="username"
                     />
                     <ErrorMessage
-                      name="email"
+                      name="username"
                       component="span"
-                      data-testid="emailError"
                     />
                   </div>
                   <div className={classes.boxContainer}>
@@ -242,7 +222,7 @@ const LoginPage = () => {
       {forgetPasswordModal && (
         <GenericModal
           header="Check your email to update your password"
-          details={"We sent a link to " + `${email}`}
+          details={"We sent a link to " + `${username}`}
           icon={<TfiEmail className={classes.modalicon} />}
         />
       )}
