@@ -20,19 +20,10 @@
     font-size: var(--lengthL2);
 }
 
-.blurImg {
-    position: absolute;
-    filter : blur(3px);
-    height: 70vh;
-    width: 100%;
-    opacity: 0.5;
-    overflow-x:hidden;
-}
-
 .mainImg {
     position: relative;
-    height:70.5vh;
-    width:70%;
+    width:100%;
+    height: 70vh;
     z-index: 2;
     overflow-x:hidden;
 }

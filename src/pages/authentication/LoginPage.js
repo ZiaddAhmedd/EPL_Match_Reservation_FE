@@ -20,7 +20,7 @@ const LoginPage = () => {
   const user = useSelector((state) => state.user);
 
   const [randImg, setrandImg] = useState(Math.floor(Math.random() * 3));
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
   const [errorLink, setErrorLink] = useState("");
@@ -36,7 +36,7 @@ const LoginPage = () => {
     const decodedToken = jwtDecode(token);
     console.log(decodedToken);
     const data = {
-      email: decodedToken.email,
+      username: decodedToken.username,
       name: decodedToken.name,
       image: decodedToken.picture,
     };
@@ -51,15 +51,14 @@ const LoginPage = () => {
   }, []);
 
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
+    username: Yup.string()
       .min(3)
-      .email("Please enter a valid email address")
-      .required("Please enter a valid email address"),
+      .required("Please enter a valid username address"),
     password: Yup.string().required("Password is required"),
   });
   const [loader, setLoader] = useState(false);
@@ -68,7 +67,7 @@ const LoginPage = () => {
     setErrorMsg("");
     setErrorLinkMsg("");
     setErrorLink("");
-    setEmail(data.email);
+    setUsername(data.username);
 
     async function sendData() {
       setLoader(true);
@@ -87,7 +86,7 @@ const LoginPage = () => {
         console.log(UserResponse.data);
         dispatch(
           userActions.updateUser({
-            email: UserResponse.data.email,
+            username: UserResponse.data.username,
             name: UserResponse.data.name,
             phoneNO: UserResponse.data.phoneNO,
             isAdmin: UserResponse.data.isAdmin,
@@ -102,16 +101,16 @@ const LoginPage = () => {
         setLoader(false);
         // console.log("X" + err.response.data.error + "x");
         if (err.response.data.error === "Error: Password is incorrect") {
-          setErrorMsg("Email or password is incorrect");
+          setErrorMsg("Username or password is incorrect");
           setShowForgetPass(true);
         } else if (
-          err.response.data.error === "Error: email is not verified "
+          err.response.data.error === "Error: username is not verified "
         ) {
-          setErrorMsg("Email is not verified");
+          setErrorMsg("Username is not verified");
         } else {
-          setErrorMsg("There is no account associated with the email.");
+          setErrorMsg("There is no account associated with the username.");
           setErrors({
-            email: "There is no account associated with the email.",
+            username: "There is no account associated with the username.",
           });
           setErrorLinkMsg("Create account");
           setErrorLink("/signup");
@@ -128,7 +127,7 @@ const LoginPage = () => {
     async function sendData() {
       try {
         const response = await axios.patch(routes.forgotPassword, {
-          email: email,
+          username: username,
         });
         console.log(response);
         setForgetPasswordModal(true);
@@ -185,19 +184,17 @@ const LoginPage = () => {
             >
               {({ values }) => (
                 <Form>
-                  {setEmail(values.email)}
+                  {setUsername(values.username)}
                   <div className={classes.boxContainer}>
                     <Field
                       className={classes.field}
-                      name="email"
+                      name="username"
                       autoComplete="off"
-                      data-testid="LoginFormEmailInput"
-                      placeholder="Email"
+                      placeholder="Username"
                     />
                     <ErrorMessage
-                      name="email"
+                      name="username"
                       component="span"
-                      data-testid="emailError"
                     />
                   </div>
                   <div className={classes.boxContainer}>
@@ -239,13 +236,13 @@ const LoginPage = () => {
         </div>
         <div className={classes.imageLogin}></div>
       </div>
-      {forgetPasswordModal && (
+      {/* {forgetPasswordModal && (
         <GenericModal
           header="Check your email to update your password"
           details={"We sent a link to " + `${email}`}
           icon={<TfiEmail className={classes.modalicon} />}
         />
-      )}
+      )} */}
     </div>
   );
 };

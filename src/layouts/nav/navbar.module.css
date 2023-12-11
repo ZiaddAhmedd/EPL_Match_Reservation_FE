@@ -1,7 +1,7 @@
 .nav{
     display: flex;
     /* justify-content: space-between; */
-    height: 10.5vh;
+    height: 10vh;
     background: var(--secondary-background);
     position: relative;
     align-items: center;

@@ -13,13 +13,7 @@ import toast from "react-hot-toast";
 import MyToaster from "../../generic components/toaster/MyToaster";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-/**
- * Component that renders Signup page
- *
- * @component
- * @example
- * return(<SignupPage />)
- */
+
 const SignupPage = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -53,12 +47,14 @@ const SignupPage = () => {
   };
 
   const validationSchema = Yup.object().shape({
+    username: Yup.string().min(2).required("Field required"),
+    password: Yup.string().min(8).required("Field required"),
     email: Yup.string()
       .min(3)
       .email("Invalid email address")
       .required(" Email field is required"),
-
-    password: Yup.string().min(8).required("Field required"),
+    firstName: Yup.string().min(2).required("Field required"),
+    lastName: Yup.string().min(2).required("Field required"),
   });
 
   const sendData = async (data) => {
@@ -80,7 +76,6 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
       <div className={classes.main}>
         <MyToaster />
         <NavLink to="/">
@@ -188,7 +183,6 @@ const SignupPage = () => {
         </div>
         <div className={classes.imgSignUp}></div>
       </div>
-    </div>
   );
 };
 

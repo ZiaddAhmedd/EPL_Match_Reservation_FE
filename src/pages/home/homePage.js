@@ -13,7 +13,6 @@ const Home = () => {
       <div className={classes.homePage}>
         {/* Hero Section */}
         <img src={championsImg} alt="Champions" className={classes.mainImg} />
-        <img src={championsImg} alt="Champions" className={classes.blurImg} />
         {/* Headline */}
         <div className={classes.body}>
           
