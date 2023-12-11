@@ -16,6 +16,7 @@ const Home = () => {
         <img src={championsImg} alt="Champions" className={classes.blurImg} />
         {/* Headline */}
         <div className={classes.body}>
+          
         <h1 className={classes.title}>Experience the thrill of Egyptian Premier League live matches! <br></br> Reserve your tickets now.</h1>
       
       {/* Match Information Section */}
@@ -30,7 +31,7 @@ const Home = () => {
 
       {/* Ticket Reservation Section */}
       <section>
-        <h2>Reserve Your Tickets</h2>
+        <h2 className= {classes.title}>Reserve Your Tickets</h2>
         {/* Reservation Form */}
         {/* Pricing Information */}
         <button className={classes.buttons}><p>Reserve Now </p></button>
@@ -47,17 +48,6 @@ const Home = () => {
         <h2>FAQs</h2>
         {/* Display frequently asked questions and answers */}
       </section>
-
-      {/* Contact Information Page */}
-      <section>
-        <h2>Contact Us</h2>
-        {/* Display contact details or a contact form */}
-      </section>
-
-      {/* Footer Section */}
-      <footer>
-        {/* Links, Social Media Icons, Copyright Information */}
-      </footer>
       </div>
       </div>
     </>

@@ -1,5 +1,38 @@
+/* footer.module.css */
+
 .footer {
-  background-color: var(--secondary-background);
-  color: var(--primary-text);
-  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  height: 7vh;
+  background: var(--secondary-background);
+  align-items: center;
+  font-size: var(--lengthM2);
 }
+
+.footerContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around /* Align content to both ends */
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 24px; /* Adjust the font size as needed */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.contactus:hover {
+  color: #ff6600;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #ff6600;
+  cursor: pointer;
+}
+
