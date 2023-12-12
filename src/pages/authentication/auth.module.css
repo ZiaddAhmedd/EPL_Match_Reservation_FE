@@ -13,11 +13,14 @@
 .imageLogin, .imgSignUp{
   display: flex;
   width: 45%;
-  background-image: url("../../assets/imgs/login/BlobAuth.jpg");
-  background-position:0;
-  background-repeat: no-repeat;
-  background-size: cover;
-    z-index: 2;
+}
+
+.img {
+  position: relative;
+  left:20%;
+  top : 25%;
+  height: 50%;
+  object-fit: cover;
 }
 
 .imageLogin{
