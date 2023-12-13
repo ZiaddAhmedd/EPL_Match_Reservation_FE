@@ -14,13 +14,13 @@ import axios from "../../requests/axios";
 import routes from "../../requests/routes";
 import { userActions } from "../../store/userSlice";
 import classes from "./auth.module.css";
+import EPLIcon from "../../assets/imgs/login/EPL_Icon.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const [randImg, setrandImg] = useState(Math.floor(Math.random() * 3));
   const [username, setUsername] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -86,8 +86,10 @@ const LoginPage = () => {
         setLoader(false);
         if (UserResponse.data.role === "Admin") {
           navigate("/admin");
-        } else {
-          navigate("/");
+        } else if (UserResponse.role === "Manager") {
+          navigate("/manager");
+        } else if (UserResponse.role === "Fan") {
+          navigate("/fan");
         }
         // sessionStorage.setItem("token", response.data.token);
         // sessionStorage.setItem("id", response.data.user._id);
@@ -185,7 +187,6 @@ const LoginPage = () => {
                       name="password"
                       type="password"
                       autoComplete="off"
-                      data-testid="LoginFormPasswordInput"
                       placeholder="Password"
                     />
                     <ErrorMessage name="password" component="span" />
@@ -200,7 +201,6 @@ const LoginPage = () => {
                     <button
                       type="submit"
                       className={classes.button}
-                      data-testid="LoginFormSubmitButton"
                     >
                       <p>Login</p>
                     </button>
@@ -210,13 +210,15 @@ const LoginPage = () => {
                       Do not have an account? <b>Register Now</b>{" "}
                     </p>
                   </Link>
-                  {loader && <Loader color={"#f900bf"} />}
+                  {loader && <Loader color= {"#BB5824"} />}
                 </Form>
               )}
             </Formik>
           </div>
         </div>
-        <div className={classes.imageLogin}></div>
+        <div className={classes.imageLogin}>
+          <img src={EPLIcon} alt="EPL Icon" className={classes.img} />
+        </div>
       </div>
       {/* {forgetPasswordModal && (
         <GenericModal

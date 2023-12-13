@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
 import MyToaster from "../../generic components/toaster/MyToaster";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+import EPLIcon from "../../assets/imgs/login/EPL_Icon.png";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -183,7 +183,9 @@ const SignupPage = () => {
             </Link>
           </div>
         </div>
-        <div className={classes.imgSignUp}></div>
+        <div className={classes.imgSignUp}>
+          <img src={EPLIcon} alt="EPL Icon" className={classes.img} />
+        </div>
       </div>
   );
 };
