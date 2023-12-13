@@ -22,7 +22,6 @@ const userSlice = createSlice({
       state.username = action.payload.username;
       sessionStorage.clear();
       sessionStorage.setItem("id", action.payload.id);
-      sessionStorage.setItem("username", action.payload.username);
       sessionStorage.setItem("token", action.payload.token);
     },
     updateUser: (state, action) => {
@@ -34,6 +33,7 @@ const userSlice = createSlice({
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.birthDate = action.payload.birthDate;
+      sessionStorage.setItem("username", action.payload.username);
     },
     updateUserForm: (state, action) => {
       state.address = action.payload.address;

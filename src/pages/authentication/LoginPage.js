@@ -64,7 +64,6 @@ const LoginPage = () => {
           userActions.login({
             id: response.data.user._id,
             token: response.data.token,
-            username: response.data.user.username,
           })
         );
 
@@ -85,14 +84,14 @@ const LoginPage = () => {
           })
         );
         setLoader(false);
-        if (UserResponse.role === "Admin") {
+        if (UserResponse.data.role === "Admin") {
           navigate("/admin");
         } else {
           navigate("/");
         }
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("id", response.data.user._id);
-        sessionStorage.setItem("username", response.data.user.username);
+        // sessionStorage.setItem("token", response.data.token);
+        // sessionStorage.setItem("id", response.data.user._id);
+        // sessionStorage.setItem("username", response.data.user.username);
       } catch (err) {
         setLoader(false);
         if (err.response.data.error === "Error: Password is incorrect") {
