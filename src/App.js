@@ -11,7 +11,7 @@ import Manager from "./pages/manager/managerPage";
 import AddMatch from "./pages/manager/addMatch";
 import AddStadium from "./pages/manager/addStadium";
 import Admin from "./pages/admin/adminPage";
-import FanPage from "./pages/fan/FanPage";
+import FanPage from "./pages/fan/fanPage";
 
 function App() {
 

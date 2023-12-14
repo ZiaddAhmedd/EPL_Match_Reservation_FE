@@ -53,8 +53,12 @@ const SignupPage = () => {
       .min(3)
       .email("Invalid email address")
       .required(" Email field is required"),
-    firstName: Yup.string().min(2).required("Field required"),
-    lastName: Yup.string().min(2).required("Field required"),
+    firstName: Yup.string().min(2).required("First name field is required"),
+    lastName: Yup.string().min(2).required("Last name field is required"),
+    birthDate: Yup.date().required("Birthday field is required"),
+    gender: Yup.string().required("Gender field is required"),
+    city: Yup.string().required("City field is required"),
+    role : Yup.string().required("Role field is required")
   });
 
   const sendData = async (data) => {
@@ -76,6 +80,8 @@ const SignupPage = () => {
     setErrorLinkMsg("");
     setErrorLink("");
   };
+
+  const egyptCities = ["Alexandria","Aswan","Asyut","Beheira","Beni Suef","Cairo","Dakahlia","Damietta","Faiyum","Gharbia","Giza","Ismailia","Kafr El Sheikh","Luxor","Matruh","Minya","Monufia","New Valley","North Sinai","Port Said","Qalyubia","Qena","Red Sea","Sharqia","Sohag","South Sinai","Suez"]
 
   return (
       <div className={classes.main}>
@@ -107,25 +113,75 @@ const SignupPage = () => {
               {({ values }) => (
                 <Form>
                   {setMyEmail(values.email)}
-                  <div className={classes.boxContainer}>
-                    <Field
-                      className={classes.field}
-                      name="firstName"
-                      autoComplete="off"
-                      data-testid="firstNamefield"
-                      placeholder="First Name"
-                    />
-                    <ErrorMessage name="firstName" component="span" />
+                  <div className={classes.nameContainer}>
+                    <div className={classes.boxContainer}>
+                      <Field
+                        className={classes.field}
+                        name="firstName"
+                        autoComplete="off"
+                        data-testid="firstNamefield"
+                        placeholder="First Name"
+                      />
+                      <ErrorMessage name="firstName" component="span" />
+                    </div>
+                    <div className={classes.boxContainer}>
+                      <Field
+                        className={classes.field}
+                        name="lastName"
+                        autoComplete="off"
+                        data-testid="lastNamefield"
+                        placeholder="Last Name"
+                      />
+                      <ErrorMessage name="lastName" component="span" />
+                    </div>
                   </div>
+
                   <div className={classes.boxContainer}>
-                    <Field
-                      className={classes.field}
-                      name="lastName"
-                      autoComplete="off"
-                      data-testid="lastNamefield"
-                      placeholder="Last Name"
-                    />
-                    <ErrorMessage name="lastName" component="span" />
+                      <Field
+                        className={classes.field}
+                        name="address"
+                        autoComplete="off"
+                        data-testid="addressfield"
+                        placeholder="Full Address"
+                      />
+                  </div>
+                  <div className={classes.nameContainer}>
+                  <div className={classes.boxContainer}>
+                      <div className={classes.dropbox}>
+                      <Field as="select" name="city" className={`${classes.dropList} ${classes.scrollableList}`}>
+                        <option value="" disabled hidden className={classes.dropItem}>
+                          Select a city
+                        </option>
+                        {egyptCities.map((city, index) => (
+                          <option key={index} value={city} className={classes.dropItem}>
+                            {city}
+                          </option>
+                        ))}
+                      </Field>
+                      </div>
+                    </div>
+                    <div className={classes.boxContainer}>
+                      <div className={classes.dropbox}>
+                        <Field as="select" name="gender" className={classes.dropList}>
+                          <option value="" disabled hidden className={classes.dropItem}>
+                            Select a gender
+                          </option>
+                          <option value="Male" className={classes.dropItem}>
+                            Male
+                          </option>
+                          <option value="Female" className={classes.dropItem}>
+                            Female
+                          </option>
+                        </Field>
+                      </div>
+                    </div>
+                    <div className={classes.boxContainer}>
+                        <Field
+                          className="inputField"
+                          name="birthDate"
+                          type="date"
+                        />
+                    </div>
                   </div>
                   <div className={classes.boxContainer}>
                     <Field
@@ -164,6 +220,21 @@ const SignupPage = () => {
                     </div>
                     <ErrorMessage name="password" component="span" />
                   </div>
+                  <div className={classes.dropboxes}>
+                      <div className={classes.dropbox}>
+                        <Field as="select" name="role" className={classes.dropList}>
+                          <option value="" disabled hidden>
+                            Select a role
+                          </option>
+                          <option value="Fan" className={classes.dropItem}>
+                            Fan
+                          </option>
+                          <option value="Manager" className={classes.dropItem}>
+                            Manager
+                          </option>
+                        </Field>
+                      </div>
+                    </div>
                   <div className={classes.btn}>
                     <button
                       type="submit"
