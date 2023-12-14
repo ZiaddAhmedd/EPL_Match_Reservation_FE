@@ -7,10 +7,11 @@ import ForgetPasswordPage from "./pages/authentication/ForgetPasswordPage";
 import NotFound from "./layouts/notFound/NotFound";
 import Home from "./pages/home/homePage";
 import Manager from "./pages/manager/managerPage";
-// import Fan from "./pages/fan/fanPage";
+
 import AddMatch from "./pages/manager/addMatch";
 import AddStadium from "./pages/manager/addStadium";
 import Admin from "./pages/admin/adminPage";
+import FanPage from "./pages/fan/FanPage";
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <Route path="/manager" element={<Manager />} exact></Route>
         <Route path="/manager/addmatch" element={<AddMatch />} exact></Route>
         <Route path="/manager/addstadium" element={<AddStadium />} exact></Route>
-        {/* <Route path="/Fan" element={<Fan />} exact></Route> */}
+        <Route path="/Fan" element={<FanPage />} exact></Route>
         <Route path="/forgetPassword/:id" element={<ForgetPasswordPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -5,6 +5,7 @@ const routes = {
     changePassword: "/api/user/change-password",
     getUser: "/api/user/",
     addMatch: "/api/match/createMatch",
+    updateUser: "/api/user",
 
 }
 export default routes 

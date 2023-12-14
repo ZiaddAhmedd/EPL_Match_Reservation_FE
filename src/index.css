@@ -11,6 +11,7 @@
   --delivered: #86f1b8;
   --cancelled: #fb3a5a;
   --inputBG: #ffffff15;
+  --inputBG2: #ffffff09;
   --darkOrange : #b80000;
   --darkYellow :#e2bf23;
   /* 3x Font colors */
@@ -110,6 +111,7 @@ button {
 
 .inputField {
   width: 100%;
+  text-align: left;
   height: 5rem;
   padding: 1.5rem;
   margin-block: 0.8rem;
@@ -124,6 +126,15 @@ button {
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */
 }
+
+.inputField[disabled] {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* .inputFieldDisabled:hover {
+  cursor: not-allowed;
+} */
 
 .inputField::placeholder {
   color: var(--placeHolder);
