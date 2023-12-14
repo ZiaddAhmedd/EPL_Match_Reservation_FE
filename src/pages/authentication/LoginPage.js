@@ -86,10 +86,12 @@ const LoginPage = () => {
         setLoader(false);
         if (UserResponse.data.role === "Admin") {
           navigate("/admin");
-        } else if (UserResponse.role === "Manager") {
+        } else if (UserResponse.data.role === "Manager") {
           navigate("/manager");
-        } else if (UserResponse.role === "Fan") {
+        } else if (UserResponse.data.role === "Fan") {
           navigate("/fan");
+        } else {
+          navigate("/");
         }
         // sessionStorage.setItem("token", response.data.token);
         // sessionStorage.setItem("id", response.data.user._id);
