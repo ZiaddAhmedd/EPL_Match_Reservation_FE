@@ -19,9 +19,11 @@ const Footer = () => {
             <FaInstagram className={classes.icon} />
           </a>
         </div>
-          <a href="https://www.facebook.com/messages/t/104657012005760" target="_blank">
-            <p className={classes.contactus}>Contact Us</p>
+        <div  className={classes.contactus}>
+          <a href="https://www.facebook.com/messages/t/104657012005760"  target="_blank">
+            <p>Contact Us</p>
           </a>
+        </div>
       </div>
     </footer>
   );

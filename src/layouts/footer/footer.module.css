@@ -13,10 +13,12 @@
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-around /* Align content to both ends */
+  padding-left: 5%;
 }
 
 .socialIcons {
+  position: relative;
+  left : 31%;
   display: flex;
   gap: 15px;
 }
@@ -24,6 +26,12 @@
 .icon {
   font-size: 24px; /* Adjust the font size as needed */
   transition: color 0.3s; /* Smooth color transition */
+}
+
+.contactus {
+  position:absolute;
+  right : 0px;
+  padding-right: 5%;
 }
 
 .contactus:hover {
