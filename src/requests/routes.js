@@ -6,6 +6,7 @@ const routes = {
     getUser: "/api/user/",
     addMatch: "/api/match/",
     addStaff: "/api/staff/",
+    addStadium: "/api/stadium/",
     updateUser: "/api/user",
 
 }
