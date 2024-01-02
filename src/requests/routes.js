@@ -11,6 +11,11 @@ const routes = {
     getStadium: "/api/stadium/?startDate=",
     getTeam: "/api/team/?startDate=",
     updateUser: "/api/user",
+    verifyUser: "/api/user/verify/",
+    deleteUser: "/api/user/deleteUser/",
+    getNotVerifiedUser: "/api/user/notVerifiedUsers",
+    getallUser: "/api/user/allUsers",
+    
 
 }
 export default routes 
