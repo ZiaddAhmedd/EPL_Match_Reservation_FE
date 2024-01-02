@@ -10,6 +10,7 @@ import Manager from "./pages/manager/managerPage";
 
 import AddMatch from "./pages/manager/addMatch";
 import AddStadium from "./pages/manager/addStadium";
+import AddStaff from "./pages/manager/addStaff";
 import Admin from "./pages/admin/adminPage";
 import FanPage from "./pages/fan/FanPage";
 import EditProfile from "./pages/fan/EditProfile";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/manager" element={<Manager />} exact></Route>
         <Route path="/manager/addmatch" element={<AddMatch />} exact></Route>
         <Route path="/manager/addstadium" element={<AddStadium />} exact></Route>
+        <Route path="/manager/addstaff" element={<AddStaff />} exact></Route>
         <Route path="/Fan" element={<FanPage />} exact></Route>
         <Route path="/Fan/editprofile" element={<EditProfile />} exact></Route>
         <Route path="/forgetPassword/:id" element={<ForgetPasswordPage />} />
