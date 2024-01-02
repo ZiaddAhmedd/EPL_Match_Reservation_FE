@@ -26,9 +26,14 @@ const AddStaff = (props) => {
     console.log(data);
 
     async function addstaff() {
+      try {
         const res = await axios.post(routes.addStaff, data);
         console.log(res);
         toast.success("Staff Added Successfully!");
+      }
+      catch (error) {
+        toast.error(error.response.data.error);
+      }
     }
     
 

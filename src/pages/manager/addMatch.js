@@ -5,59 +5,77 @@ import classes from "./form.module.css";
 import * as Yup from "yup";
 import axios from "../../requests/axios";
 import routes from "../../requests/routes";
+import toast, { ToastBar } from "react-hot-toast";
+import MyToaster from "../../generic components/toaster/MyToaster";
 
 
 const AddMatch = (props) => {
 
-    const Teams = ['Al Ahly FC','Pyramids FC','Zamalek SC','Cleopatra FC','Modern Future FC','El Masry SC','Bank El Ahly','	Pharco FC','El Mokawloon SC',"Tala'ea El Gaish",'Ittihad Alexandria SC','Smouha SC','Enppi SC','Zed FC','	Ismaily SC','El Gouna FC',
-    'Baladiyat El Mahalla','El Dakhlia SC']
+    const initialValues = {
+        firstTeam:"",
+        secondTeam:"",
+        dateTime:"",
+        referee:"",
+        firstLinesman:"",
+        secondLinesman:"",
+        stadium: "",
+        };
 
-    function dropDownMenu(option,index) {
+    function dropDownMenu(option,id) {
     return (
-        <option  key = {index}className={classes.option} value={index}>{option}</option>
+        <option  key = {id}className={classes.option} value={id}>{option}</option>
     )
     }
 
-    // Stadium Getting and Setting
-    const [stadiumData,setStadiumData ] = useState([]);
-    async function getStadiumData() {    
-        // var config = {
-        // method: 'get',
-        // headers: {Authorization:"Bearer "+ sessionStorage.getItem("tokenValue") }
-        // };
-        // let response = '';
-        // try {
-    
-        //   response = await axios.get("http://localhost:3001/stadiums/all-stadiums",config).then((res) => res.data);
-        //   return (response);
-        // } catch (error) {
-        //   if (error.response) {
-        //     return (error.response);
-        //   }
-        // }
-        // return (response);
-    }
-    useEffect(() => {
-        (async () => {
-        const resp = await getStadiumData();
-        setStadiumData(resp);
-        })();
-    }, []);
+    // useEffect to get team on the time
+    const [dataTime,setdataTime] = useState([]);
+    const [time,setTime] = useState([]);
+    const [date,setDate] = useState([]);
+    const [staff,setStaff] = useState([]);
+    const [referees,setReferees] = useState([]);
 
-    const initialValues = {
-    stadium:"",
-    firstTeam:"",
-    secondTeam:"",
-    date:"",
-    time:"",
-    referee:"",
-    firstLinesmen:"",
-    secondLinesmen:"",
-    seating: [],
-    noRows:"",
-    stadiumname:"",
-    reserved:0
-    };
+    
+
+
+    // Stadium Getting and Setting
+    const [teamData,setTeamData ] = useState([]);
+    const [stadiumData,setStadiumData ] = useState([]);
+    const [refereeData,setrefereeData ] = useState([]);
+    const [firstLinesmenData,setfirstLinesmenData ] = useState([]);
+    const [secondLinesmenData,setsecondLinesmenData ] = useState([]);
+    const [dateTimeData,setdateTimeData ] = useState("");
+
+    async function getTeamsData(concatenatedDateTime) {    
+        const resp = await axios.get(routes.getTeam+concatenatedDateTime);
+        return resp.data;
+    }
+
+    async function getStadiumData(concatenatedDateTime) {
+        const resp = await axios.get(routes.getStadium+concatenatedDateTime);
+        return resp.data;
+    }
+
+    async function getStaffData(concatenatedDateTime) {
+        const resp = await axios.get(routes.getStaff+concatenatedDateTime);
+        return resp.data;
+    }
+
+    
+    useEffect(() => {
+        const concatenatedDateTime = `${date}T${time}:00.000Z`;
+        setdateTimeData(concatenatedDateTime);
+        (async () => {
+        const teamRes = await getTeamsData(concatenatedDateTime);
+        setTeamData(teamRes);
+        const stadiumRes = await getStadiumData(concatenatedDateTime);
+        setStadiumData(stadiumRes);
+        const staffRes = await getStaffData(concatenatedDateTime);
+        setStaff(staffRes);
+
+        console.log(staffRes);
+        })();
+    }, [time,date]);
+    
 
     const validationSchema = Yup.object().shape({
     stadium: Yup.string()
@@ -66,35 +84,16 @@ const AddMatch = (props) => {
     });
 
     const onformSubmit = (data) => {
+    data.dateTime = dateTimeData;
     console.log(data);
     async function addMatch() {
-       // create past date to compare with the date of the match
-        const currentDate = new Date();
-        console.log(currentDate)
-        const y = new Date(data.date);
-        if(data.firstTeam==data.secondTeam)
-        {
-            alert("Same team");
-            return;
-        }
-        else if(y<=currentDate)
-        {
-            alert("Past Date");
-            return;
-        }
         try {
-            // data.seating = Array.from({length: Number(stadiumData[Number(data.stadium)].numSeats)}, (v, i) => 0);
-            // data.noRows = stadiumData[Number(data.stadium)].numRows;
-            // data.stadiumname = stadiumData[Number(data.stadium)].stadium;
-            // data.reserved = 0;
-            const request = await axios.post(routes.addMatch, data, 
-            { headers: { Authorization: `Bearer ${sessionStorage.getItem("tokenValue")}` } }).then((res) => {
-                console.log(res)
-            })
-            window.location.reload(false);
-
-        } catch (err) {
-            
+        const res = await axios.post(routes.addMatch, data);
+        console.log(res);
+        toast.success("Match Added Successfully!");
+        } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.error);
         }
 
     }
@@ -105,29 +104,18 @@ const AddMatch = (props) => {
     return (
 
     <div className={classes.body}>
+    <MyToaster />
     <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => onformSubmit(values)}
+        onSubmit={onformSubmit}
     >
         {({ values }) => (
-        <Form className={classes.shape}>
+            <Form className={classes.shape}>
+            {setTime(values.time)}
+            {setDate(values.date)}
             <h2 className={classes.titles}>Add Match</h2>
             <div className={classes.forminput}>
-            <div className={classes.inputbox}>
-                <label className={classes.label}>First Team</label>
-                <Field as="select" className={classes.input} type="text" name="firstTeam" placeholder="Type here" required>
-                    <option value="" disabled="disabled">Select team</option>
-                    {Teams.map((g, index)=> dropDownMenu(g,index))}
-                </Field>
-            </div>
-            <div className={classes.inputbox}>
-                <label className={classes.label}>Second Team</label>
-                <Field as="select" className={classes.input} type="text" name="secondTeam" placeholder="Type here" required>
-                    <option value="" disabled="disabled">Select team</option>
-                    {Teams.map((g, index)=> dropDownMenu(g,index))}
-                </Field>
-            </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>Date</label>
                 <Field
@@ -149,41 +137,46 @@ const AddMatch = (props) => {
                 />
             </div>
             <div className={classes.inputbox}>
+                <label className={classes.label}>First Team</label>
+                <Field as="select" className={classes.input} type="text" name="firstTeam" placeholder="Type here" required>
+                    <option value="" disabled="disabled">Select team</option>
+                    {teamData.map((g, index) => dropDownMenu(g.name,g._id))}
+                </Field>
+            </div>
+            <div className={classes.inputbox}>
+                <label className={classes.label}>Second Team</label>
+                <Field as="select" className={classes.input} type="text" name="secondTeam" placeholder="Type here" required>
+                    <option value="" disabled="disabled">Select team</option>
+                    {teamData.map((g, index)=> dropDownMenu(g.name,g._id))}
+                </Field>
+            </div>
+            <div className={classes.inputbox}>
                 <label className={classes.label}>Stadium</label>
                 <Field as="select" className={classes.input} type="text" name="stadium" placeholder="Type here" >
                 <option value="" disabled="disabled">Select Stadium</option>
-                {stadiumData? stadiumData.map((g, index)=> dropDownMenu(g.stadium,index)) : null}
+                {stadiumData? stadiumData.map((g, index)=> dropDownMenu(g.name,g._id)) : null}
                 </Field>
             </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>Referee</label>
-                <Field
-                className={classes.input}
-                type="text"
-                name="referee"
-                placeholder="Type here"
-                required
-                />
+                <Field as="select" className={classes.input} type="text" name="referee" placeholder="Type here" >
+                <option value="" disabled="disabled">Select Referee</option>
+                {staff ? staff.filter(item => item.type === 'referee').map((g, index) => dropDownMenu(g.name, g._id)) : null}
+                </Field>
             </div>
             <div className={classes.inputbox}>
-                <label className={classes.label}>First Line man</label>
-                <Field
-                className={classes.input}
-                type="text"
-                name="firstLinesmen"
-                placeholder="Type here"
-                required
-                />
+                <label className={classes.label}>First Line Man</label>
+                <Field as="select" className={classes.input} type="text" name="firstLinesman" placeholder="Type here" >
+                <option value="" disabled="disabled">Select First Line Man</option>
+                {staff ? staff.filter(item => item.type === 'linesman').map((g, index) => dropDownMenu(g.name, g._id)) : null}
+                </Field>
             </div>
             <div className={classes.inputbox}>
-                <label className={classes.label}>Second Line man</label>
-                <Field
-                className={classes.input}
-                type="text"
-                name="secondLinesmen"
-                placeholder="Type here"
-                required
-                />
+                <label className={classes.label}>Second Line Man</label>
+                <Field as="select" className={classes.input} type="text" name="secondLinesman" placeholder="Type here" >
+                <option value="" disabled="disabled">Select Second Line Man</option>
+                {staff ? staff.filter(item => item.type === 'linesman').map((g, index) => dropDownMenu(g.name, g._id)) : null}
+                </Field>
             </div>
             </div>
             <button type="submit" className={classes.buttons}>Submit</button>

@@ -28,9 +28,15 @@ const AddStadium = (props) => {
       console.log(data);
   
       async function addstadium() {
+        try {
           const res = await axios.post(routes.addStadium, data);
           console.log(res);
           toast.success("Stadium Added Successfully!");
+        }
+        catch (error) {
+          
+          toast.error(error.response.data.error);
+        }
       }
       
   
