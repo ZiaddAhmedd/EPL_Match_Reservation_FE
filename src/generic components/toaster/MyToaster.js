@@ -11,6 +11,8 @@ const MyToaster = (props) => {
         style: {
           padding: "16px",
           fontSize: "1.8rem",
+          background: "black",
+          color : "white",
         },
       }}
     />
