@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+    height: 5rem;
+    width: 5rem;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+  }
+  
+  .container:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  
+  .container,.closedBtn p {
+    font-family: var(--main-font);
+    font-size: var(--lengthL1);
+    color: var(--primary-background);
+  }
+    
+  .closedBtn {
+    position: relative;
+    height: 5rem;
+    width: 5rem;
+    background-color: var(--white) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+    border: 2px solid #78787a;
+    opacity: 0.8;
+  }
+  
+  .closedBtn:hover {
+    cursor: not-allowed;
+  }
