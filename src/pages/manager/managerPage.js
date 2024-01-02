@@ -18,6 +18,9 @@ return (
   <NavLink to="/manager/addstadium" className={classes.buttons}>
     Add Stadium
   </NavLink>
+  <NavLink to="/manager/addstaff" className={classes.buttons}>
+    Add Staff
+  </NavLink>
   </div>
   </div>
 );

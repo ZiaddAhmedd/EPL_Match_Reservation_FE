@@ -44,7 +44,7 @@ const LoginPage = () => {
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
-      .min(5)
+      .min(2)
       .required("Please enter a username"),
     password: Yup.string().required("Password is required"),
   });

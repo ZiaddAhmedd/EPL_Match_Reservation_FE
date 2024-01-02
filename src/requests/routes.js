@@ -4,7 +4,8 @@ const routes = {
     forgotPassword: "/api/user/reset-password",
     changePassword: "/api/user/change-password",
     getUser: "/api/user/",
-    addMatch: "/api/match/createMatch",
+    addMatch: "/api/match/",
+    addStaff: "/api/staff/",
     updateUser: "/api/user",
 
 }

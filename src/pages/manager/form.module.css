@@ -12,6 +12,8 @@
       border-radius: 1rem;
       box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
       rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    top : 10%;
+    
     }
     
     .inputbox {
@@ -87,3 +89,27 @@
       font-size: var(--lengthM3);
       font-style: var(--main-font);
     }
+
+    
+.dropboxes {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.dropbox {
+  width: 100%;
+}
+
+.dropList {
+  width: 25.5rem;
+  box-sizing: border-box;
+  border: 2px solid #747474;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  background-repeat: no-repeat;
+  padding: 1rem 0.8rem;
+  text-align: left;
+  color : white;
+  background-color: #0c0101;
+}
