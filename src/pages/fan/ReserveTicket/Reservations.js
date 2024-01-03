@@ -29,10 +29,9 @@ const Reservations = () => {
       <h1 className="title">Reservations</h1>
       <div className={classes.cards}>
         {resp?.map((item, index) => (
-          <NavLink to={"/MatchDetails/" + item._id}>
-          {console.log(item.ticketId)}
             <MatchCard
               key={index}
+              matchId={item._id}
               id={item.ticketId}
               team1={item.firstTeam}
               team2={item.secondTeam}
@@ -41,7 +40,7 @@ const Reservations = () => {
               stadium={item.stadium}
               inReserve={true}
             />
-          </NavLink>
+
         ))}
       </div>
     </div>

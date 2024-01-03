@@ -43,6 +43,7 @@ const NavBar = () => {
               <p>Login</p>
             </NavLink>
           ) : (
+            user.role !== "Admin" &&
             <NavLink to={"/Fan/"+user.id+"/EditProfile"}>
               <PersonIcon fontSize="large" />
             </NavLink>

@@ -26,8 +26,10 @@ const ReserveTicketPage = (props) => {
         };
         const resp = await axios.post(routes.reserveTicket, data);
         toast.success("Ticket reserved");
+        handleModalClose();
     } catch (err) {
-        toast.error("Something went wrong");
+        toast.error(err.response.data.error);
+        handleModalClose();
     }
     };
 
@@ -91,10 +93,9 @@ const ReserveTicketPage = (props) => {
             Reserve
           </button>
         </div>
-        <Modal open={openModal} onClick={handleModalClose}>
+        <Modal open={openModal}>
           <Box sx={style}>
-            <h1>Enter VISA and CVV</h1>
-            <h1>Master Card Details</h1>
+            <h1>Enter Credit Card details</h1>
             <div className={classes.inputbox}>
               <label className={classes.label}>Card Number</label>
               <input
@@ -102,6 +103,7 @@ const ReserveTicketPage = (props) => {
                 type="text"
                 name="cardNumber"
                 placeholder="Type here"
+                pattern="[0-9]{16}"
                 required
               ></input>
             </div>
@@ -112,6 +114,7 @@ const ReserveTicketPage = (props) => {
                 type="text"
                 name="cvv"
                 placeholder="Type here"
+                pattern="[0-9]{3}"
                 required
               ></input>
             </div>

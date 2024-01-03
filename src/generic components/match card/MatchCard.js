@@ -5,25 +5,26 @@ import routes from "../../requests/routes";
 import DeleteIcon from "@mui/icons-material/Delete";
 import toast from "react-hot-toast";
 import MyToaster from "../../generic components/toaster/MyToaster";
+import { NavLink } from "react-router-dom";
 
 const MatchCard = (props) => {
-
   const deleteReservation = async (event) => {
     try {
       // Stop the event propagation to prevent it from reaching the parent element
-      const resp = await axios.delete(routes.cancelTicket, { data: { ticket: props.id } });
+      const resp = await axios.delete(routes.cancelTicket, {
+        data: { ticket: props.id },
+      });
       console.log(resp);
       toast.success("Reservation cancelled");
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.response.data.error);
     }
     event.stopPropagation();
   };
-  
 
   return (
     <div className={classes.card}>
-    <MyToaster/>
+      <MyToaster />
       <div className={classes.teams}>
         <div className={classes.team}>
           <img src={props.team1.flag} alt="team1" />
@@ -38,8 +39,10 @@ const MatchCard = (props) => {
         <p>{props.matchTime}</p>
         <p>{props.date}</p>
         <p>{props.stadium.name}</p>
+
       </div>
       {props.inReserve && (
+        <div className={classes.cardFooter}>
         <button
           className={classes.remove}
           type="button"
@@ -50,6 +53,12 @@ const MatchCard = (props) => {
             sx={{ color: "#BB5824", fontSize: 20 }}
           />
         </button>
+        <NavLink to={"/MatchDetails/" + props.matchId}>
+          <div className={classes.btn}>
+            <button className={classes.buttons}>View</button>
+          </div>
+          </NavLink>
+        </div>
       )}
     </div>
   );

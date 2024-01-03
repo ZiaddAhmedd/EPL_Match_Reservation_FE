@@ -1,78 +1,117 @@
 .card {
-    z-index: -1;
-    width: 32rem;
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 1rem;
-    border: solid 2px var(--orange);
-    background-color: black;
-    padding : 1rem 2rem 0 2rem;
+  width: 32rem;
+  height: 32rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  border: solid 2px var(--orange);
+  background-color: black;
+  padding: 1rem 2rem 0 2rem;
 }
 
 .card:hover {
-    cursor: pointer;
-    opacity: 0.8;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .teams {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 70%;
-    min-width:15rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 70%;
+  min-width: 15rem;
 }
 
 .team {
-    min-width:15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .team p {
-    font-size: var(--lengthM3);
-    font-weight: 500;
+  font-size: var(--lengthM3);
+  font-weight: 500;
 }
 
 .team img {
-    width: 10rem;
-    aspect-ratio: 1/1;
-    object-fit: scale-down;
+  width: 10rem;
+  aspect-ratio: 1/1;
+  object-fit: scale-down;
 }
 
 .bottomSec {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30%;
 }
 .bottomSec p {
-    font-size: var(--lengthM2);
-    font-weight: 300;
+  font-size: var(--lengthM2);
+  font-weight: 300;
 }
 
-
-.remove{
-    z-index: 100000;
-    background-color:black;
-    border: none;
-    width: 4rem;
-    height: 5rem;
-    margin: 1rem;
-    border-radius: 0.5rem;
-    padding: 0;
-    box-shadow: 1px 1px 5px rgb(0, 0, 0,0.2);
-    border: 1px solid #BB5824;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.remove {
+  background-color: black;
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  padding: 0;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
+  border: 1px solid #bb5824;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .remove:hover {
-    cursor: pointer;
-    opacity: 0.8;   
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.btn {
+  display: flex;
+  width: 17rem;
+  justify-content: flex-end;
+}
+.buttons {
+  height: 4rem;
+  border-radius: 0.4rem;
+  color: var(--white);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to left, var(--darkOrange), var(--darkYellow)) 1 /
+    2px;
+  background: linear-gradient(to left, transparent 50%, var(--darkYellow) 100%)
+      right,
+    linear-gradient(to left, transparent 50%, var(--darkOrange) 50%) right;
+  background-size: 200%;
+  transition: 0.4s ease-out;
+  margin-top: 5%;
+  font-size: var(--lengthM3);
+  font-weight: bold;
+  width: 50%;
+  background-color: #0c0101;
+}
+
+.buttons:hover {
+  background-position: left;
+}
+
+.buttons > p {
+  font-size: var(--lengthM3);
+  font-style: var(--main-font);
+}
+
+.cardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
 }
