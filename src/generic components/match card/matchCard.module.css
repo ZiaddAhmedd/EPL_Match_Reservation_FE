@@ -1,0 +1,53 @@
+.card {
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    border: solid 2px var(--orange);
+    background-color: black;
+    padding-top: 1rem;
+}
+
+.card:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.teams {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 70%;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.team p {
+    font-size: var(--lengthM3);
+    font-weight: 500;
+}
+
+.team img {
+    width: 14rem;
+    aspect-ratio: 1/1;
+    object-fit: scale-down;
+}
+
+.bottomSec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
+}
+.bottomSec p {
+    font-size: var(--lengthM2);
+    font-weight: 300;
+}

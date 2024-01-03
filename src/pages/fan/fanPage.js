@@ -4,6 +4,7 @@ import SideBar from "./sidebar/SideBar";
 import { Route, Routes } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import ReserveTicketPage from "./ReserveTicket/ReserveTicketPage";
+import Reservations from "./ReserveTicket/Reservations";
 
 const FanPage = () => {
   return (
@@ -21,7 +22,7 @@ const FanPage = () => {
               </div>
             }
           />
-          <Route path="/ReserveTicket" element={<ReserveTicketPage />} />
+          <Route path="/Reservations" element={<Reservations />} />
         </Routes>
       </main>
     </div>

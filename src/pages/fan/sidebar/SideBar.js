@@ -13,7 +13,7 @@ function SideBar() {
     },
     {
       title: "Reservations",
-      link: "ReserveTicket",
+      link: "Reservations",
     },
     {
       title: "Matches",
