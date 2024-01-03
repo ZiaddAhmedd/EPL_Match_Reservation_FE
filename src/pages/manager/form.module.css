@@ -90,6 +90,18 @@
       font-style: var(--main-font);
     }
 
+    .inputbox span{
+      font-size: var(--lengthM2);
+      color: #BB5824;
+      
+  }
+
+  
+  .dropboxes span{
+    font-size: var(--lengthM2);
+    color: #BB5824;
+    
+}
     
 .dropboxes {
   display: flex;

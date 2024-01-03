@@ -55,10 +55,10 @@ const SignupPage = () => {
       .required(" Email field is required"),
     firstName: Yup.string().min(2).required("First name field is required"),
     lastName: Yup.string().min(2).required("Last name field is required"),
-    birthDate: Yup.date().required("Birthday field is required"),
-    gender: Yup.string().required("Gender field is required"),
-    city: Yup.string().required("City field is required"),
-    role : Yup.string().required("Role field is required")
+    // birthDate: Yup.date().required("Birthday field is required"),
+    // gender: Yup.string().required("Gender field is required"),
+    // city: Yup.string().required("City field is required"),
+    // role : Yup.string().required("Role field is required")
   });
 
   const sendData = async (data) => {
@@ -68,9 +68,21 @@ const SignupPage = () => {
       // clear form
 
     } catch (error) {
-      setErrorMsg("There is an account associated with this username.");
-      setErrorLinkMsg("Log in");
-      setErrorLink("/login");
+      console.log(error);
+      if (error.response.data.message.includes("username"))
+        {toast.error("Username already exists");}
+      if (error.response.data.message.includes("email"))
+        {toast.error("Email already exists");}
+      if (error.response.data.message.includes("role"))
+        {toast.error("Role is required");}
+      if (error.response.data.message.includes("birthDate"))
+        {toast.error("Birthdate is required");}
+      if (error.response.data.message.includes("city"))
+        {toast.error("City is required");}
+      if  (error.response.data.message.includes("gender"))
+        {toast.error("Gender is required");}
+      if (error.response.data.message.includes("Birth date must be in the past!"))
+        {toast.error("Birth date must be in the past");}
     }
   };
 

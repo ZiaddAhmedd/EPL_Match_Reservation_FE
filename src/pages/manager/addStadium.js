@@ -20,7 +20,7 @@ const AddStadium = (props) => {
     const validationSchema = Yup.object().shape({
       name: Yup.string().required(),
       rows: Yup.string().min(1).required(),
-      seatsPerRow: Yup.string().min(1).max(20).required(),
+      seatsPerRow: Yup.string().min(1).required(),
     });
 
     const onformSubmit = (data) => {
@@ -63,6 +63,7 @@ const AddStadium = (props) => {
                   name="name"
                   placeholder="Type here"
                 />
+                <ErrorMessage name="name" component="span" />
               </div>
               <div className={classes.inputbox}>
                 <label className={classes.label}>Rows</label>
@@ -72,6 +73,7 @@ const AddStadium = (props) => {
                   name="rows"
                   placeholder="Type here"
                 />
+                <ErrorMessage name="rows" component="span" />
               </div>
               <div className={classes.inputbox}>
                 <label className={classes.label}>No. Of Seats per row</label>
@@ -81,6 +83,7 @@ const AddStadium = (props) => {
                   name="seatsPerRow"
                   placeholder="Type here"
                 />
+                <ErrorMessage name="seatsPerRow" component="span" />
               </div>
             </div>
               <button type="submit" className={classes.buttons} >Submit</button>

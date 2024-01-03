@@ -152,28 +152,28 @@ const AddMatch = (props) => {
             </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>Stadium</label>
-                <Field as="select" className={classes.input} type="text" name="stadium" placeholder="Type here" >
+                <Field as="select" className={classes.input} type="text" name="stadium" placeholder="Type here" required>
                 <option value="" disabled="disabled">Select Stadium</option>
                 {stadiumData? stadiumData.map((g, index)=> dropDownMenu(g.name,g._id)) : null}
                 </Field>
             </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>Referee</label>
-                <Field as="select" className={classes.input} type="text" name="referee" placeholder="Type here" >
+                <Field as="select" className={classes.input} type="text" name="referee" placeholder="Type here" required>
                 <option value="" disabled="disabled">Select Referee</option>
                 {staff ? staff.filter(item => item.type === 'referee').map((g, index) => dropDownMenu(g.name, g._id)) : null}
                 </Field>
             </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>First Line Man</label>
-                <Field as="select" className={classes.input} type="text" name="firstLinesman" placeholder="Type here" >
+                <Field as="select" className={classes.input} type="text" name="firstLinesman" placeholder="Type here" required>
                 <option value="" disabled="disabled">Select First Line Man</option>
                 {staff ? staff.filter(item => item.type === 'linesman').map((g, index) => dropDownMenu(g.name, g._id)) : null}
                 </Field>
             </div>
             <div className={classes.inputbox}>
                 <label className={classes.label}>Second Line Man</label>
-                <Field as="select" className={classes.input} type="text" name="secondLinesman" placeholder="Type here" >
+                <Field as="select" className={classes.input} type="text" name="secondLinesman" placeholder="Type here" required>
                 <option value="" disabled="disabled">Select Second Line Man</option>
                 {staff ? staff.filter(item => item.type === 'linesman').map((g, index) => dropDownMenu(g.name, g._id)) : null}
                 </Field>
