@@ -1,71 +1,84 @@
 
 import React from 'react';
 import UserCard from '../../generic components/admin/userCard';
-import axios from 'axios';
 import classes from './admin.module.css';
+import axios from "../../requests/axios";
+import routes from "../../requests/routes";
+import MyToaster from "../../generic components/toaster/MyToaster";
+import { useState, useEffect } from "react";
+import NavBar from "../../layouts/nav/NavBar";
 
 function Admin() {
 
-    const [usersData,setUsersData ] = React.useState([]);
-    async function getData() {
-    // console.log("requesting")
+    const [notVerifiedUsers, setNotVerifiedUsers] = useState([]);
+    const [allUsersData, setAllUsersData] = useState([]);
 
-    // var config = {
-    //     method: 'get',
-    //     headers: {Authorization:"Bearer "+ sessionStorage.getItem("tokenValue") }
-    // };
-    // let response = '';
-    // try {
-
-    //     response = await axios.get("http://localhost:3001/users/all-users",config).then((res) => res.data);
-    //     return (response);
-
-    // } catch (error) {
-    //     if (error.response) {
-    //     return (error.response);
-    //     }
-    // }
-    // return (response);
+    async function getNotVerifiedUsers() {
+        const resp = await axios.get(routes.getNotVerifiedUser);
+        return resp.data;
     }
 
+    async function getAllUsers() {
+        const resp = await axios.get(routes.getallUser);
+        return resp.data;
+    }
 
+    useEffect(() => {
+        (async () => {
+            const notVerifiedUsersRes = await getNotVerifiedUsers();
+            setNotVerifiedUsers(notVerifiedUsersRes);
+            const allUsersRes = await getAllUsers();
+            setAllUsersData(allUsersRes);
 
-    // React.useEffect(() => {
-    // (async () => {
-    //     const resp = await getData();
-    //     setUsersData(resp);
-    // })();
-    // }, []);
-
-    // React.useEffect(() => {
-    //     // console.log(ProfileInfo);
-    //     console.log(usersData);
-    // }, [usersData]);
-
-    React.useEffect(() => {
-        const usersData = require('./data/userData.json');
-        setUsersData(usersData);
+            })();
     }, []);
 
-    const userList = usersData.map((item) => {
+    const notVerifiedUserList = notVerifiedUsers.user?.map((item) => {
             return(        
                 <UserCard 
                 key={item._id}
-                username={item.username} 
+                id = {item._id}
+                username={item.firstName + " " + item.lastName}
                 email={item.email}
-                id={item._id}
-                exist = {0}
+                role={item.role}
+                verified = {item.verified}
                 />
             )
         }
     )
 
+    const allUserList = allUsersData.users?.map((item) => {
+        return(        
+            <UserCard 
+            key={item._id}
+            id = {item._id}
+            username={item.firstName + " " + item.lastName}
+            email={item.email}
+            role={item.role}
+            verified = {item.verified}
+            />
+        )
+    }
+)
+
     return (
-        <div className={classes.admin}>
-        <h1 className={classes.header}> Admin Page </h1>
-        <h2 className={classes.subheader}>Users List</h2>
-            <div className={classes.userList}>
-                {userList}
+        
+        <div>
+            <NavBar />
+            <div className={classes.admin}>
+                
+                <MyToaster />
+                <h1 className={classes.header}> Admin Page </h1>
+                <div className={classes.main}>
+                    <div className={classes.userList}>
+                    <h2 className={classes.subheader}>All Users</h2>
+                        {allUserList}
+                    </div>
+                <div className={classes.userList}>
+                    <h2 className={classes.subheader}>Verify Users</h2>
+                        {notVerifiedUserList}
+                    </div>
+                </div>
             </div>
         </div>
     )

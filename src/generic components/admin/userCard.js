@@ -1,54 +1,36 @@
 import React, { useEffect } from "react";
 import classes from "./userCard.module.css";
-import axios from 'axios'
+import toast, { ToastBar } from "react-hot-toast";
+import axios from "../../requests/axios";
+import routes from "../../requests/routes";
+import MyToaster from "../../generic components/toaster/MyToaster";
+import { useState } from "react";
 
 
 const UserCard = (props) => {
-  const approveUser = () => {
-    // (async () => {
-    //   var config = {
-    //       method: 'put',
-    //       headers: {Authorization:"Bearer "+ sessionStorage.getItem("tokenValue") }
-    //     };
-    //   let response = '';
-    //   try {
-    //       console.log(props.email)
 
 
-    //       response = await axios.put("http://localhost:3001/auth/sign-up-approve/" + props.id, '',{ headers: { Authorization: `Bearer ${sessionStorage.getItem("tokenValue")}` } }).then((res) => {
-    //           console.log(res)
-    //       })
-    //       return (response);
-    //     } catch (error) {
-    //       if (error.response) {
-    //         return (error.response);
-    //       }
-    //     }
-    //     return (response);
 
-    // })();
-  };
+    const approveUser = async () => {
+        try {
+        const resp = await axios.post(routes.verifyUser + props.id);
+        toast.success("User Verified Successfully");
+        window.location.reload();
+        } catch (err) {
+        toast.error("Something went wrong");
+        }
+    };
 
-  const removeUser = () => {
-    // (async () => {
-    //   var config = {
-    //       method: 'delete',
-    //       headers: {Authorization:"Bearer "+ sessionStorage.getItem("tokenValue") }
-    //     };
-    //   let response = '';
-    //   try {
 
-    //       response = await axios.delete("http://localhost:3001/auth/sign-up-disapprove/" + props.id ,config).then((res) => res.data);
-
-    //       return (response);
-    //     } catch (error) { 
-    //       if (error.response) {
-    //         return (error.response);
-    //       }
-    //     }
-    //     return (response);
-
-    // })();
+  const removeUser = async () => {
+    try {
+    const resp = await axios.delete(routes.deleteUser + props.id);
+    toast.success("User Removed Successfully");
+    window.location.reload();
+    } catch (err) {
+    toast.error("Something went wrong");
+    }
+   
 };
 
 return (
@@ -56,12 +38,16 @@ return (
         <div className={classes.sub1}>
             <div className={classes.name} >{props.username}</div>
             <div >{props.email}</div>
-            <div >{props.id}</div>
+            <div >{props.role}</div>
         </div>
         <div className={classes.sub2}>
+        {!props.verified ?
         <button onClick={approveUser} className={classes.buttons}>
                 Verify
         </button>
+        :
+        null
+        }
         <button onClick={removeUser} className={classes.buttons}>
             Remove
         </button>
