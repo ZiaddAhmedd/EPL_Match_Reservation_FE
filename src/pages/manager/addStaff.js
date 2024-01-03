@@ -59,6 +59,7 @@ const AddStaff = (props) => {
                   name="name"
                   placeholder="Type here"
                 />
+                <ErrorMessage name="name" component="span" />
               </div>
               <div className={classes.dropboxes}>
                 <label className={classes.label}>Type</label>
@@ -73,6 +74,7 @@ const AddStaff = (props) => {
                     Linesman
                     </option>
                 </Field>
+                <ErrorMessage name="type" component="span" />
                 </div>
             </div>
               <button type="submit" className={classes.buttons} >Submit</button>
