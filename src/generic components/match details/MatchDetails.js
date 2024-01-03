@@ -15,7 +15,7 @@ const MatchDetails = (props) => {
   const [resp, setResp] = React.useState([]);
   const user = useSelector((state) => state.user);
   const { id } = useParams();
-
+ 
   const initialValues = {
     firstTeam: resp?.firstTeam?.name,
     secondTeam: resp?.secondTeam?.name,
@@ -328,13 +328,8 @@ const MatchDetails = (props) => {
             rows={resp?.stadium?.rows}
             columns={resp?.stadium?.seatsPerRow}
             seats={resp?.seats}
+            matchId={id}
           />
-          <div className={classes.footerSec}>
-            <button className={classes.buttons} onClick>
-              Reserve
-            </button>
-            <button className={classes.buttons}>Delete Reservation</button>
-          </div>
         </div>
       </div>
     </div>

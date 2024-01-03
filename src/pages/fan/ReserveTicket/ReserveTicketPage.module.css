@@ -1,6 +1,39 @@
 .SeatsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  height: fit-content;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
+.buttons {
+  height: 4rem;
+  border-radius: 0.4rem;
+  color: var(--white);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to left, var(--darkOrange), var(--darkYellow)) 1 /
+    2px;
+  background: linear-gradient(to left, transparent 50%, var(--darkYellow) 100%)
+      right,
+    linear-gradient(to left, transparent 50%, var(--darkOrange) 50%) right;
+  background-size: 200%;
+  transition: 0.4s ease-out;
+  margin-top: 5%;
+  font-size: var(--lengthM3);
+  font-weight: bold;
+  width: 50%;
+  background-color: #0c0101;
+}
+
+.buttons:hover {
+  background-position: left;
+}
+
+.buttons > p {
+  font-size: var(--lengthM3);
+  font-style: var(--main-font);
 }

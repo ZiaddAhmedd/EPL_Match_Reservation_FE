@@ -15,10 +15,6 @@ function SideBar() {
       title: "Reservations",
       link: "Reservations",
     },
-    {
-      title: "Matches",
-      link: "information",
-    },
   ];
   const user = useSelector((state) => state.user);
   const firstName = user.name.split(" ")[0];
