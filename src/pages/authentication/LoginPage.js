@@ -27,8 +27,6 @@ const LoginPage = () => {
   const [errorLink, setErrorLink] = useState("");
   const [errorLinkMsg, setErrorLinkMsg] = useState("");
 
-  const [showForgetPass, setShowForgetPass] = useState(false);
-  const [forgetPasswordModal, setForgetPasswordModal] = useState(false);
 
   //To make sure user can't access login if he is already logged in
   useEffect(() => {
@@ -97,15 +95,25 @@ const LoginPage = () => {
         // sessionStorage.setItem("id", response.data.user._id);
         // sessionStorage.setItem("username", response.data.user.username);
       } catch (err) {
+        console.log(err.response.data.error);
         setLoader(false);
         if (err.response.data.error === "Error: Password is incorrect") {
-          setErrorMsg("Username or password is incorrect");
-          setShowForgetPass(true);
+          setErrorMsg("Password is incorrect");
         } else if (
-          err.response.data.error === "Error: username is not verified "
+          err.response.data.error === "Error: User is not found"
         ) {
-          setErrorMsg("Username is not verified");
-        } else {
+          setErrorMsg("User is not found");
+          setErrors({
+            username: "No account associated with this username.",
+          });
+          setErrorLinkMsg("Create account");
+          setErrorLink("/signup");
+        }else if (
+          err.response.data.error === "Error: user is not verified "
+        ) {
+          setErrorMsg("User is not verified yet");
+        }
+         else {
           setErrorMsg("There is no account associated with this username.");
           setErrors({
             username: "There is no account associated with this username.",
@@ -118,25 +126,6 @@ const LoginPage = () => {
     sendData();
   };
 
-
-  const handleForgetPassword = () => {
-    async function sendData() {
-      try {
-        const response = await axios.patch(routes.forgotPassword, {
-          username: username,
-        });
-        toast.success("Forget password link sent successfully");
-      } catch (err) {
-        if (err.response.data.error === "Error: email is not verified ") {
-          toast.error("Email is not verified");
-        } else {
-          toast.error("Error occurred");
-        }
-      }
-    }
-
-    sendData()
-  };
 
   return (
     <div data-testid="LoginComponent">
@@ -193,12 +182,6 @@ const LoginPage = () => {
                     />
                     <ErrorMessage name="password" component="span" />
                   </div>
-                  <p
-                    className={classes.screenLink}
-                    onClick={handleForgetPassword}
-                  >
-                    Forgot password?
-                  </p>
                   <div className={classes.btn}>
                     <button
                       type="submit"
@@ -222,13 +205,6 @@ const LoginPage = () => {
           <img src={EPLIcon} alt="EPL Icon" className={classes.img} />
         </div>
       </div>
-      {/* {forgetPasswordModal && (
-        <GenericModal
-          header="Check your email to update your password"
-          details={"We sent a link to " + `${username}`}
-          icon={<TfiEmail className={classes.modalicon} />}
-        />
-      )} */}
     </div>
   );
 };
