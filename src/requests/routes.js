@@ -15,6 +15,8 @@ const routes = {
     deleteUser: "/api/user/deleteUser/",
     getNotVerifiedUser: "/api/user/notVerifiedUsers",
     getallUser: "/api/user/allUsers",
+    getMatch: "/api/match/getMatch/",
+    getUsersReservations: "/api/ticket/",
     
 
 }
