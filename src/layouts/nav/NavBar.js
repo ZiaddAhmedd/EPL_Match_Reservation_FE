@@ -43,7 +43,7 @@ const NavBar = () => {
               <p>Login</p>
             </NavLink>
           ) : (
-            <NavLink to={"/Fan"}>
+            <NavLink to={"/Fan/"+user.id+"/EditProfile"}>
               <PersonIcon fontSize="large" />
             </NavLink>
           )}

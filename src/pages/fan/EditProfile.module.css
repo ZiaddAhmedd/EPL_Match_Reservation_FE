@@ -7,10 +7,12 @@
     -webkit-background-clip: text;
     color: transparent;
     text-align: center;
+    height: fit-content;
+    margin-inline: auto;
 }
 
 .Form {
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
@@ -71,7 +73,7 @@
     text-align: left;
     margin-left: 1rem;
     margin-top: 0.5rem;
-    font-size: var(--lengthM3);
+    font-size: var(--lengthM2);
     color: var(--primary-text);
     font-family: var(--main-font);
     display: block;
