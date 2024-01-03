@@ -1,12 +1,12 @@
 .card {
-    width: 30rem;
+    width: 32rem;
     height: 30rem;
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
     border: solid 2px var(--orange);
     background-color: black;
-    padding-top: 1rem;
+    padding : 1rem 2rem 0 2rem;
 }
 
 .card:hover {
@@ -20,14 +20,16 @@
     justify-content: space-around;
     align-items: center;
     height: 70%;
+    min-width:15rem;
 }
 
 .team {
+    min-width:15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .team p {
@@ -36,7 +38,7 @@
 }
 
 .team img {
-    width: 14rem;
+    width: 10rem;
     aspect-ratio: 1/1;
     object-fit: scale-down;
 }

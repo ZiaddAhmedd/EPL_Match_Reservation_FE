@@ -1,5 +1,9 @@
 .manager {
-  height: 83vh;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
 }
 
 .buttonlist {
@@ -9,6 +13,17 @@
   row-gap: 2rem;
 }
 
+.cards {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-height: max-content;
+}
 
 .buttons {
   border-radius: 0.4rem;

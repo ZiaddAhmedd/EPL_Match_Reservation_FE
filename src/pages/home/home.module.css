@@ -28,6 +28,16 @@
     overflow-x:hidden;
 }
 
+.cards {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
 .buttons {
     height: 4rem;

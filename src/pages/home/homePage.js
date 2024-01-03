@@ -3,51 +3,60 @@ import classes from "./home.module.css";
 //import MatchCard from "../../generic components/home/matchCard";
 import GenericModal from "../../generic components/generic modal/GenericModal";
 import championsImg from "../../assets/imgs/home/Champions.png";
+import routes from "../../requests/routes";
+import axios from "../../requests/axios";
+import MatchCard from "../../generic components/match card/MatchCard";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect , useState } from "react";
+
+
+
 
 
 const Home = () => {
+  const [resp, setResp] = useState([]);
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    async function getFutureMatches() {
+      const resp = await axios.get(
+        routes.getFutureMatches
+      );
+      console.log(resp);
+      setResp(resp.data);
+
+      return resp.data;
+    }
+    getFutureMatches();
+  }, []);
+
+
+
+
 
   return (
     <>
       
       <div className={classes.homePage}>
-        {/* Hero Section */}
-        <img src={championsImg} alt="Champions" className={classes.mainImg} />
-        {/* Headline */}
-        <div className={classes.body}>
-          
-        <h1 className={classes.title}>Experience the thrill of Egyptian Premier League live matches! <br></br> Reserve your tickets now.</h1>
-      
-      {/* Match Information Section */}
-        <h2 className= {classes.title}>Upcoming Matches</h2>
-        {/* Display match details and a button to select the match */}
-        {/* <MatchCard team1= "Al Ahly"
-           team2="Zamalek"
-           date="2021-10-10"
-           id = "1"
-           key= "2"/>  */}
-    
-
-      {/* Ticket Reservation Section */}
-      <section>
-        <h2 className= {classes.title}>Reserve Your Tickets</h2>
-        {/* Reservation Form */}
-        {/* Pricing Information */}
-        <button className={classes.buttons}><p>Reserve Now </p></button>
-      </section>
-
-      {/* Stadium Information Section Only VIP section is available for now*/}
-      <section>
-        <h2>Stadium Information</h2>
-        {/* Display stadium details and a button to select the stadium */}
-      </section>
-
-      {/* FAQ Section Page*/}
-      <section>
-        <h2>FAQs</h2>
-        {/* Display frequently asked questions and answers */}
-      </section>
-      </div>
+          <img src={championsImg} alt="Champions" className={classes.mainImg} />
+          <div className={classes.body}>
+            <h2 className= {classes.title}>Upcoming Matches!</h2>
+            <div className={classes.cards}>
+              {resp?.map((item, index) => (
+                <NavLink to={"/Reservations/" + item._id}>
+                  <MatchCard
+                    key={index}
+                    team1={item.firstTeam}
+                    team2={item.secondTeam}
+                    date={item.dateTime?.substring(0, 10)}
+                    matchTime={item.dateTime?.substring(11, 16)}
+                    stadium={item.stadium}
+                  />
+                </NavLink>
+              ))}
+          </div>
+        </div>
       </div>
     </>
   );
