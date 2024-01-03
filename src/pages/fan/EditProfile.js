@@ -21,7 +21,7 @@ const EditProfile = (props) => {
         lastName: user.lastName,
         birthDate: formatDate(user.birthDate),
         address: user.address,
-        gender: user.gender,
+        city: user.city,
     };
     function formatDate(dateString) {
         if (dateString != null && dateString != "") {
@@ -33,13 +33,11 @@ const EditProfile = (props) => {
     initialValues.birthDate = formatDate(initialValues.birthDate);
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string(),
-        // .min(3)
-        // .email("Please enter a valid email address")
-        // .required("Please enter a valid email address")
-
-        //validate that value from password equals value from confirmPassword
-        password: Yup.string(),
+        firstName: Yup.string().min(2).required(),
+        lastName: Yup.string().min(2).required(),
+        password: Yup.string()
+            .min(8, "Password must be at least 8 characters")
+            .required("Password field is required"),
         confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match"),
 
@@ -62,6 +60,7 @@ const EditProfile = (props) => {
                         gender: response.data.gender,
                         role: response.data.role,
                         birthDate: formatDate(response.data.birthDate),
+                        city: response.data.city
                     })
                 );
 
@@ -72,7 +71,7 @@ const EditProfile = (props) => {
 
     };
 
-
+    const egyptCities = ["Alexandria","Aswan","Asyut","Beheira","Beni Suef","Cairo","Dakahlia","Damietta","Faiyum","Gharbia","Giza","Ismailia","Kafr El Sheikh","Luxor","Matruh","Minya","Monufia","New Valley","North Sinai","Port Said","Qalyubia","Qena","Red Sea","Sharqia","Sohag","South Sinai","Suez"]
     return (
         <div className={classes.EditProfile}>
             <MyToaster />
@@ -116,6 +115,7 @@ const EditProfile = (props) => {
                                     autoComplete="off"
                                     placeholder="First Name"
                                 />
+                            <ErrorMessage name="firstName" component="span" />
                             </div>
                             <div className={classes.name}>
                                 <label className={classes.label}>Last Name</label>
@@ -126,6 +126,7 @@ const EditProfile = (props) => {
                                     autoComplete="off"
                                     placeholder="Last Name"
                                 />
+                            <ErrorMessage name="lastName" component="span" />
                             </div>
                         </div>
                         <div className={classes.nameContainer}>
@@ -165,6 +166,22 @@ const EditProfile = (props) => {
                             </div>
                         </div>
 
+                        <div className={classes.dropboxes}>
+                            <div className={classes.dropbox}>
+                                <label className={classes.label}>City</label>
+                                <Field as="select" name="city" className={`${classes.dropList} ${classes.scrollableList}`}>
+                                    <option value="" disabled hidden className={classes.dropItem}>
+                                    Select a city
+                                    </option>
+                                    {egyptCities.map((city, index) => (
+                                    <option key={index} value={city} className={classes.dropItem}>
+                                        {city}
+                                    </option>
+                                    ))}
+                                </Field>
+                            </div>
+                        </div>
+
                         <div className={classes.boxContainer}>
                             <label className={classes.label}>Full Address</label>
                             <Field
@@ -174,6 +191,8 @@ const EditProfile = (props) => {
                                 placeholder="Full Address"
                             />
                         </div>
+
+                        
 
                         <div className={classes.boxContainer}>
                             <label className={classes.label}>Birth Date</label>

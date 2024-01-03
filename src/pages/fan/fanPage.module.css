@@ -21,10 +21,9 @@
 }
 
 .infoFormAdjust{
-    display: flex;
     margin-block: 5rem;
     width: clamp(90%, 90%, 90vw);
-    width: 100%;
+    width: 50%;
     margin-inline: auto;
     min-height: 60vh;
 }
