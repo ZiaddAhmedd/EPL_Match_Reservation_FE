@@ -11,7 +11,6 @@ import Manager from "./pages/manager/managerPage";
 import AddMatch from "./pages/manager/addMatch";
 import AddStadium from "./pages/manager/addStadium";
 import AddStaff from "./pages/manager/addStaff";
-import Admin from "./pages/admin/adminPage";
 import FanPage from "./pages/fan/FanPage";
 import EditProfile from "./pages/fan/EditProfile";
 import ReserveTicketPage from "./pages/fan/ReserveTicket/ReserveTicketPage";

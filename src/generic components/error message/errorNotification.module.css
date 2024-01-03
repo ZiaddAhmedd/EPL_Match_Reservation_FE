@@ -7,7 +7,7 @@
     padding: 2rem;
 
     border-radius: 4px;
-    border-left: solid 0.5rem var(--darkYellow);
+    border-left: solid 0.5rem var(--orange);
 
     box-shadow: 0 4px 8px 0 rgba(40,44,53,.06), 
                 0 2px 2px 0 rgba(40,44,53,.06);
@@ -44,7 +44,7 @@
 }
 
 .errorLink{
-  color: var(--darkYellow);
+  color: var(--errorText);
 }
 
 .errorLink:hover{
