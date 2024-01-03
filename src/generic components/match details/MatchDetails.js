@@ -17,13 +17,14 @@ const MatchDetails = (props) => {
   const { id } = useParams();
 
   const initialValues = {
-    firstTeam: "",
-    secondTeam: "",
-    dateTime: "",
-    referee: "",
-    firstLinesman: "",
-    secondLinesman: "",
-    stadium: "",
+    firstTeam: resp?.firstTeam?.name,
+    secondTeam: resp?.secondTeam?.name,
+    date: resp?.dateTime?.substring(0, 10),
+    dateTime: resp?.dateTime?.substring(11, 16),
+    referee: resp?.referee?.name,
+    firstLinesman: resp?.firstLinesman?.name,
+    secondLinesman: resp?.secondLinesman?.name,
+    stadium: resp?.stadium?.name,
   };
 
   function dropDownMenu(option, id) {
@@ -37,8 +38,9 @@ const MatchDetails = (props) => {
   useEffect(() => {
     async function getMatch() {
       const resp = await axios.get(routes.getMatch + id);
-      console.log(resp);
-      setResp(resp.data.reservations);
+      console.log(resp.data);
+
+      setResp(resp.data);
 
       return resp.data;
     }
@@ -54,7 +56,7 @@ const MatchDetails = (props) => {
 
   // Stadium Getting and Setting
   const [teamData, setTeamData] = useState([]);
-  const [stadiumData, setStadiumData] = useState([]);
+  const [stadiumData, setStadiumData] = useState();
   const [refereeData, setrefereeData] = useState([]);
   const [firstLinesmenData, setfirstLinesmenData] = useState([]);
   const [secondLinesmenData, setsecondLinesmenData] = useState([]);
@@ -95,13 +97,19 @@ const MatchDetails = (props) => {
   });
 
   const onformSubmit = (data) => {
+    const sendData = {};
+    sendData.stadium = data.stadium;
+    sendData.referee = data.referee;
+    sendData.firstLinesman = data.firstLinesman;
+    sendData.secondLinesman = data.secondLinesman;
     data.dateTime = dateTimeData;
-    console.log(data);
+    sendData.dateTime = data.dateTime;
+    console.log(sendData);
     async function addMatch() {
       try {
-        const res = await axios.post(routes.addMatch, data);
+        const res = await axios.put(routes.updateMatch+ id, sendData);
         console.log(res);
-        toast.success("Match Added Successfully!");
+        toast.success("Match Edited Successfully!");
       } catch (error) {
         console.log(error);
         toast.error(error.response.data.error);
@@ -120,9 +128,11 @@ const MatchDetails = (props) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onformSubmit}
+            enableReinitialize
           >
             {({ values }) => (
               <Form className={classes.shape}>
+                {console.log(values.time)}
                 {setTime(values.time)}
                 {setDate(values.date)}
                 <div className={classes.forminput}>
@@ -149,115 +159,160 @@ const MatchDetails = (props) => {
                   <div className={classes.inputbox}>
                     <label className={classes.label}>First Team</label>
                     <Field
-                      as="select"
                       className={classes.input}
                       type="text"
                       name="firstTeam"
                       placeholder="Type here"
                       required
-                    >
-                      <option value="" disabled="disabled">
-                        Select team
-                      </option>
-                      {teamData.map((g, index) => dropDownMenu(g.name, g._id))}
-                    </Field>
+                      disabled
+                    ></Field>
                   </div>
                   <div className={classes.inputbox}>
                     <label className={classes.label}>Second Team</label>
                     <Field
-                      as="select"
                       className={classes.input}
                       type="text"
                       name="secondTeam"
                       placeholder="Type here"
                       required
-                    >
-                      <option value="" disabled="disabled">
-                        Select team
-                      </option>
-                      {teamData.map((g, index) => dropDownMenu(g.name, g._id))}
-                    </Field>
+                      disabled
+                    ></Field>
                   </div>
-                  <div className={classes.inputbox}>
-                    <label className={classes.label}>Stadium</label>
-                    <Field
-                      as="select"
-                      className={classes.input}
-                      type="text"
-                      name="stadium"
-                      placeholder="Type here"
-                      required
-                    >
-                      <option value="" disabled="disabled">
-                        Select Stadium
-                      </option>
-                      {stadiumData
-                        ? stadiumData.map((g, index) =>
-                            dropDownMenu(g.name, g._id)
-                          )
-                        : null}
-                    </Field>
-                  </div>
-                  <div className={classes.inputbox}>
-                    <label className={classes.label}>Referee</label>
-                    <Field
-                      as="select"
-                      className={classes.input}
-                      type="text"
-                      name="referee"
-                      placeholder="Type here"
-                      required
-                    >
-                      <option value="" disabled="disabled">
-                        Select Referee
-                      </option>
-                      {staff
-                        ? staff
-                            .filter((item) => item.type === "referee")
-                            .map((g, index) => dropDownMenu(g.name, g._id))
-                        : null}
-                    </Field>
-                  </div>
-                  <div className={classes.inputbox}>
-                    <label className={classes.label}>First Line Man</label>
-                    <Field
-                      as="select"
-                      className={classes.input}
-                      type="text"
-                      name="firstLinesman"
-                      placeholder="Type here"
-                      required
-                    >
-                      <option value="" disabled="disabled">
-                        Select First Line Man
-                      </option>
-                      {staff
-                        ? staff
-                            .filter((item) => item.type === "linesman")
-                            .map((g, index) => dropDownMenu(g.name, g._id))
-                        : null}
-                    </Field>
-                  </div>
-                  <div className={classes.inputbox}>
-                    <label className={classes.label}>Second Line Man</label>
-                    <Field
-                      as="select"
-                      className={classes.input}
-                      type="text"
-                      name="secondLinesman"
-                      placeholder="Type here"
-                      required
-                    >
-                      <option value="" disabled="disabled">
-                        Select Second Line Man
-                      </option>
-                      {staff
-                        ? staff
-                            .filter((item) => item.type === "linesman")
-                            .map((g, index) => dropDownMenu(g.name, g._id))
-                        : null}
-                    </Field>
-                  </div>
+
+                  {date && time ? (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Stadium</label>
+                      <Field
+                        as="select"
+                        className={classes.input}
+                        type="text"
+                        name="stadium"
+                        placeholder="Type here"
+                        required
+                      >
+                        <option value="zoz">Select Stadium</option>
+                        {stadiumData
+                          ? stadiumData?.map((g, index) =>
+                              dropDownMenu(g.name, g._id)
+                            )
+                          : null}
+                      </Field>
+                    </div>
+                  ) : (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Stadium</label>
+                      <Field
+                        className={classes.input}
+                        type="text"
+                        name="stadium"
+                        placeholder="Type here"
+                        required
+                        disabled
+                      ></Field>
+                    </div>
+                  )}
+                  {date && time ? (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Referee</label>
+                      <Field
+                        as="select"
+                        className={classes.input}
+                        type="text"
+                        name="referee"
+                        placeholder="Type here"
+                        required
+                      >
+                        <option value="" disabled="disabled">
+                          Select Referee
+                        </option>
+                        {staff
+                          ? staff
+                              .filter((item) => item.type === "referee")
+                              .map((g, index) => dropDownMenu(g.name, g._id))
+                          : null}
+                      </Field>
+                    </div>
+                  ) : (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Referee</label>
+                      <Field
+                        className={classes.input}
+                        type="text"
+                        name="referee"
+                        placeholder="Type here"
+                        required
+                        disabled
+                      ></Field>
+                    </div>
+                  )}
+                  {date && time ? (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>First Line Man</label>
+                      <Field
+                        as="select"
+                        className={classes.input}
+                        type="text"
+                        name="firstLinesman"
+                        placeholder="Type here"
+                        required
+                      >
+                        <option value="" disabled="disabled">
+                          Select First Line Man
+                        </option>
+                        {staff
+                          ? staff
+                              .filter((item) => item.type === "linesman")
+                              .map((g, index) => dropDownMenu(g.name, g._id))
+                          : null}
+                      </Field>
+                    </div>
+                  ) : (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>First Line Man</label>
+                      <Field
+                        className={classes.input}
+                        type="text"
+                        name="firstLinesman"
+                        placeholder="Type here"
+                        required
+                        disabled
+                      ></Field>
+                    </div>
+                  )}
+                  {date && time ? (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Second Line Man</label>
+                      <Field
+                        as="select"
+                        className={classes.input}
+                        type="text"
+                        name="secondLinesman"
+                        placeholder="Type here"
+                        required
+                      >
+                        <option value="" disabled="disabled">
+                          Select Second Line Man
+                        </option>
+                        {staff
+                          ? staff
+                              .filter((item) => item.type === "linesman")
+                              .map((g, index) => dropDownMenu(g.name, g._id))
+                          : null}
+                      </Field>
+                    </div>
+                  ) : (
+                    <div className={classes.inputbox}>
+                      <label className={classes.label}>Second Line Man</label>
+                      <Field
+                        className={classes.input}
+                        type="text"
+                        name="secondLinesman"
+                        placeholder="Type here"
+                        required
+                        disabled
+                      ></Field>
+                    </div>
+                  )}
                 </div>
                 <div className={classes.btn}>
                   <button type="submit" className={classes.buttons}>

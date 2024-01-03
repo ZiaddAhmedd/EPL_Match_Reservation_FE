@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import classes from "./ReserveTicketPage.module.css";
 import Seat from "./Seat/Seat"
-import MatchCard from "../../../generic components/home/MatchCard";
 
 const ReserveTicketPage = () => {
 

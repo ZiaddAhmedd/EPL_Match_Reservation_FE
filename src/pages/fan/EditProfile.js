@@ -23,6 +23,7 @@ const EditProfile = (props) => {
         address: user.address,
         city: user.city,
     };
+    
     function formatDate(dateString) {
         if (dateString != null && dateString != "") {
             return dateString.substring(0, 10);
