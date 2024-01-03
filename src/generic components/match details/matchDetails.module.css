@@ -26,6 +26,13 @@
   gap: 2rem;
 }
 
+.footerSec {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .shape {
   background-color: var(--inputBG);
   margin: auto;

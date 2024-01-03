@@ -12,7 +12,7 @@ const Seat = (props) => {
             props.setSeats(props.selectedSeats.filter((seat) => seat !== props.index));
             return;
         }
-        props.setSeats([...props.selectedSeats, props.index]);
+        props.setSeats([...props.selectedSeats, props.index + 1]);
     };
     return (
         <div className={classes.seat}>

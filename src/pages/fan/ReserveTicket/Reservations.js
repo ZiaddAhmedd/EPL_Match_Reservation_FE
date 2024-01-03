@@ -30,13 +30,16 @@ const Reservations = () => {
       <div className={classes.cards}>
         {resp?.map((item, index) => (
           <NavLink to={"/MatchDetails/" + item._id}>
+          {console.log(item.ticketId)}
             <MatchCard
               key={index}
+              id={item.ticketId}
               team1={item.firstTeam}
               team2={item.secondTeam}
               date={item.dateTime?.substring(0, 10)}
               matchTime={item.dateTime?.substring(11, 16)}
               stadium={item.stadium}
+              inReserve={true}
             />
           </NavLink>
         ))}

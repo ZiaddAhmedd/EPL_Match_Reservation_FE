@@ -19,6 +19,8 @@ const routes = {
     getUsersReservations: "/api/ticket/",
     getFutureMatches:"/api/match/getFutureMatches",
     updateMatch:"/api/match/updateMatch/",
+    reserveTicket:"/api/ticket/reserve/",
+    cancelTicket:"/api/ticket/cancel-reservation/",
 
     
 

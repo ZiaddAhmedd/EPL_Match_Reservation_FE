@@ -107,7 +107,7 @@ const MatchDetails = (props) => {
     console.log(sendData);
     async function addMatch() {
       try {
-        const res = await axios.put(routes.updateMatch+ id, sendData);
+        const res = await axios.put(routes.updateMatch + id, sendData);
         console.log(res);
         toast.success("Match Edited Successfully!");
       } catch (error) {
@@ -324,7 +324,17 @@ const MatchDetails = (props) => {
           </Formik>
         </div>
         <div className={classes.rightSec}>
-          <ReserveTicketPage />
+          <ReserveTicketPage
+            rows={resp?.stadium?.rows}
+            columns={resp?.stadium?.seatsPerRow}
+            seats={resp?.seats}
+          />
+          <div className={classes.footerSec}>
+            <button className={classes.buttons} onClick>
+              Reserve
+            </button>
+            <button className={classes.buttons}>Delete Reservation</button>
+          </div>
         </div>
       </div>
     </div>
