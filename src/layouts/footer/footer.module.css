@@ -7,6 +7,7 @@
   background: var(--secondary-background);
   align-items: center;
   font-size: var(--lengthM2);
+  margin-top: 2rem;
 }
 
 .footerContent {
