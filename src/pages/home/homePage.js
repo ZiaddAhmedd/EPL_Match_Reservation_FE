@@ -44,7 +44,7 @@ const Home = () => {
             <h2 className= {classes.title}>Upcoming Matches!</h2>
             <div className={classes.cards}>
               {resp?.map((item, index) => (
-                <NavLink to={"/Reservations/" + item._id}>
+                <NavLink to={"/MatchDetails/" + item._id}>
                   <MatchCard
                     key={index}
                     team1={item.firstTeam}

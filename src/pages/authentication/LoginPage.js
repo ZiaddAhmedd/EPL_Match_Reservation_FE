@@ -87,7 +87,7 @@ const LoginPage = () => {
         } else if (UserResponse.data.role === "Manager") {
           navigate("/manager");
         } else if (UserResponse.data.role === "Fan") {
-          navigate("/fan");
+          navigate("/");
         } else {
           navigate("/");
         }
