@@ -42,7 +42,7 @@ return (
     </div>
     <div className={classes.cards}>
       {resp?.map((item, index) => (
-        <NavLink to={"/Reservations/" + item._id}>
+        <NavLink to={"/MatchDetails/" + item._id}>
           <MatchCard
             key={index}
             team1={item.firstTeam}
