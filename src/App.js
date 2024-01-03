@@ -14,6 +14,7 @@ import AddStaff from "./pages/manager/addStaff";
 import FanPage from "./pages/fan/FanPage";
 import EditProfile from "./pages/fan/EditProfile";
 import ReserveTicketPage from "./pages/fan/ReserveTicket/ReserveTicketPage";
+import MatchDetails from "./generic components/match details/MatchDetails";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/manager/addstaff" element={<AddStaff />} exact></Route>
         <Route path="/fan/:id/*" element={<FanPage />} exact></Route>
         <Route path="Fan/ReserveTicket" element={<ReserveTicketPage />} exact></Route>
+        <Route path="/MatchDetails/:id" element={<MatchDetails />} />
         <Route path="/forgetPassword/:id" element={<ForgetPasswordPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -29,7 +29,7 @@ const Reservations = () => {
       <h1 className="title">Reservations</h1>
       <div className={classes.cards}>
         {resp?.map((item, index) => (
-          <NavLink to={"/Reservations/" + item._id}>
+          <NavLink to={"/MatchDetails/" + item._id}>
             <MatchCard
               key={index}
               team1={item.firstTeam}

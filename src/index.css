@@ -107,6 +107,7 @@ button {
   font-weight: 400;
   letter-spacing: 0.1rem;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .inputField {

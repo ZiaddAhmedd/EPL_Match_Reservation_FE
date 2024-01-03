@@ -18,6 +18,7 @@ const routes = {
     getMatch: "/api/match/getMatch/",
     getUsersReservations: "/api/ticket/",
     
+    
 
 }
 export default routes 

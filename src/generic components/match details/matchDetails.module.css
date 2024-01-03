@@ -1,0 +1,171 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-block: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.leftSec {
+  width: 60%;
+}
+.rightSec {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.shape {
+  background-color: var(--inputBG);
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;   
+  justify-content: center;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.forminput {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  flex-wrap: wrap;
+  margin-left: 5rem;
+  justify-content: space-around;
+}
+
+.titles {
+  font-size: 5rem;
+  color: var(--orange);
+  padding-bottom: 3rem;
+  text-align: center;
+}
+.input {
+  width: 25.5rem;
+  box-sizing: border-box;
+  border: 2px solid #747474;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  background-repeat: no-repeat;
+  padding: 1rem 0.8rem;
+  text-align: left;
+  color: white;
+  background-color: #0c0101;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverts the color of the icon */
+}
+
+.label {
+  font-size: 1.7rem;
+  padding-bottom: 0.5rem;
+  color: #bb5824;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+.buttons {
+  height: 4rem;
+  border-radius: 0.4rem;
+  color: var(--white);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-image: linear-gradient(to left, var(--darkOrange), var(--darkYellow)) 1 /
+    2px;
+  background: linear-gradient(to left, transparent 50%, var(--darkYellow) 100%)
+      right,
+    linear-gradient(to left, transparent 50%, var(--darkOrange) 50%) right;
+  background-size: 200%;
+  transition: 0.4s ease-out;
+  margin-top: 5%;
+  font-size: var(--lengthM3);
+  font-weight: bold;
+  width: 50%;
+  background-color: #0c0101;
+}
+
+.buttons:hover {
+  background-position: left;
+}
+
+.buttons > p {
+  font-size: var(--lengthM3);
+  font-style: var(--main-font);
+}
+
+.inputbox span {
+  font-size: var(--lengthM2);
+  color: #bb5824;
+}
+
+.dropboxes span {
+  font-size: var(--lengthM2);
+  color: #bb5824;
+}
+
+.dropboxes {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.dropbox {
+  width: 100%;
+}
+
+.dropList {
+  width: 25.5rem;
+  box-sizing: border-box;
+  border: 2px solid #747474;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  background-repeat: no-repeat;
+  padding: 1rem 0.8rem;
+  text-align: left;
+  color: white;
+  background-color: #0c0101;
+}
+
+@media screen and (max-width: 768px) {
+  .body {
+    flex-direction: column;
+  }
+  .leftSec {
+    width: 100%;
+  }
+  .rightSec {
+    width: 100%;
+  }
+  .shape {
+    width: 100%;
+    min-width: 100%;
+  }
+  .forminput {
+    margin-left: 0;
+  }
+  .buttons {
+    width: 100%;
+    left: 0;
+  }
+}
