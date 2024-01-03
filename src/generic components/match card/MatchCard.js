@@ -8,15 +8,18 @@ import MyToaster from "../../generic components/toaster/MyToaster";
 
 const MatchCard = (props) => {
 
-  const deleteReservation = async () => {
+  const deleteReservation = async (event) => {
     try {
-      const resp = await axios.delete(routes.cancelTicket ,{"ticket":props.id});
+      // Stop the event propagation to prevent it from reaching the parent element
+      const resp = await axios.delete(routes.cancelTicket, { data: { ticket: props.id } });
+      console.log(resp);
       toast.success("Reservation cancelled");
-      window.location.reload();
     } catch (err) {
       toast.error("Something went wrong");
     }
+    event.stopPropagation();
   };
+  
 
   return (
     <div className={classes.card}>
@@ -40,7 +43,7 @@ const MatchCard = (props) => {
         <button
           className={classes.remove}
           type="button"
-          onClick={deleteReservation}
+          onClick={(e) => deleteReservation(e)}
         >
           <DeleteIcon
             classname={classes.clear}

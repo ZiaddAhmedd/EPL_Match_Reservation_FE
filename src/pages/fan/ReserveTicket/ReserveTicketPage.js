@@ -8,8 +8,10 @@ import axios from "../../../requests/axios";
 import routes from "../../../requests/routes";
 import toast from "react-hot-toast";
 import MyToaster from "../../../generic components/toaster/MyToaster";
+import { useSelector } from "react-redux";
 
 const ReserveTicketPage = (props) => {
+  const user = useSelector((state) => state.user);
     const reserveTicket = async () => {
     try {
         // {
@@ -79,6 +81,7 @@ const ReserveTicketPage = (props) => {
           />
         ))}
       </div>
+      {selectedSeats.length > 0 && user.role === "Fan" &&
       <div className={classes.footerSec}>
         <div className={classes.btn}>
           <button
@@ -117,7 +120,7 @@ const ReserveTicketPage = (props) => {
             </button>
           </Box>
         </Modal>
-      </div>
+      </div>}
     </div>
   );
 };

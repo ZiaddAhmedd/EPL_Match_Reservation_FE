@@ -9,7 +9,7 @@ const Seat = (props) => {
         }
         setUserSelected(!userSelected);
         if (userSelected) {
-            props.setSeats(props.selectedSeats.filter((seat) => seat !== props.index));
+            props.setSeats(props.selectedSeats.filter((seat) => seat !== (props.index + 1)));
             return;
         }
         props.setSeats([...props.selectedSeats, props.index + 1]);

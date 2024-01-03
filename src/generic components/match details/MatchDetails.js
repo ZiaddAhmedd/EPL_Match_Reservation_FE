@@ -15,7 +15,7 @@ const MatchDetails = (props) => {
   const [resp, setResp] = React.useState([]);
   const user = useSelector((state) => state.user);
   const { id } = useParams();
- 
+
   const initialValues = {
     firstTeam: resp?.firstTeam?.name,
     secondTeam: resp?.secondTeam?.name,
@@ -144,6 +144,7 @@ const MatchDetails = (props) => {
                       name="date"
                       placeholder="Type here"
                       required
+                      disabled={user.role === "Manager" ? false : true}
                     />
                   </div>
                   <div className={classes.inputbox}>
@@ -154,6 +155,7 @@ const MatchDetails = (props) => {
                       name="time"
                       placeholder="Type here"
                       required
+                      disabled={user.role === "Manager" ? false : true}
                     />
                   </div>
                   <div className={classes.inputbox}>
@@ -314,11 +316,13 @@ const MatchDetails = (props) => {
                     </div>
                   )}
                 </div>
-                <div className={classes.btn}>
-                  <button type="submit" className={classes.buttons}>
-                    Submit
-                  </button>
-                </div>
+                {user.role === "Manager" && (
+                  <div className={classes.btn}>
+                    <button type="submit" className={classes.buttons}>
+                      Submit
+                    </button>
+                  </div>
+                )}
               </Form>
             )}
           </Formik>
